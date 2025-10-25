@@ -15,7 +15,7 @@ function EventCard({ event }: { event: EventType }) {
       className="group cursor-pointer rounded-2xl overflow-hidden bg-neutral-900 hover:bg-neutral-800/70 transition-all duration-300 p-4"
     >
       {/* Event Image */}
-      <Animate variants={fade} className="relative h-56 overflow-hidden rounded-xl">
+      <Animate variants={fade} viewOnce className="relative h-56 overflow-hidden rounded-xl">
         <Image
           src={`/media/images/events/${event.image}.jpg`}
           alt={event.title[lang]}

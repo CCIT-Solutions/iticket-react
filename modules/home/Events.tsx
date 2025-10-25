@@ -36,6 +36,7 @@ function Events() {
           <Animate
             element="h2"
             variants={fade}
+            viewOnce
             className="text-3xl font-bold mb-6"
           >
             <Translate text="events.title" />
@@ -44,7 +45,7 @@ function Events() {
           {/* Category Filters */}
           <div className="flex scrollbar-hide flex-wrap gap-3">
             {eventCategories.map((category, index) => (
-              <Animate variants={fade} key={index}>
+              <Animate variants={fade} key={index} viewOnce>
                 <button
                  
                   onClick={() => {

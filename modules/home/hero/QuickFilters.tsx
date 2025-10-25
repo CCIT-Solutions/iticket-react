@@ -12,7 +12,7 @@ function QuickFilters() {
 
   return (
     <Animate
-      variants={fadeD1} className="mb-8 overflow-x-auto scrollbar-hide">
+      variants={fadeD1} viewOnce className="mb-8 overflow-x-auto scrollbar-hide">
       <Container>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
           {quickFilters.map((filter, index) => {

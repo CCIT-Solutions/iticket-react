@@ -27,6 +27,7 @@ export default function CTASection() {
             <Animate
               element="h2"
               variants={fade}
+              viewOnce
               className="text-2xl lg:text-4xl font-medium text-black"
             >
               <span className="font-black">
@@ -43,6 +44,7 @@ export default function CTASection() {
 
             <Animate
               variants={fadeD1}
+              viewOnce
               className="flex flex-wrap items-center justify-center md:justify-start gap-4"
             >
               {/* App Store Button */}
@@ -94,6 +96,7 @@ export default function CTASection() {
           {/* Phone Group Image */}
           <Animate
             variants={fade}
+            viewOnce
             className="relative w-full h-[220px] lg:h-[280px]"
           >
             <Image

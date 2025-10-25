@@ -19,7 +19,7 @@ const EventSlider = () => {
 
   return (
     <Animate
-      variants={fadeD1} className="my-8 relative">
+      variants={fadeD1} viewOnce className="my-8 relative">
       <Container>
         <Swiper
           key={isRTL ? "rtl" : "ltr"}
@@ -221,6 +221,7 @@ const EventSlider = () => {
 
       {/* Decorative side images */}
       <Animate
+      viewOnce
       variants={fadeDu3}>
 
       
