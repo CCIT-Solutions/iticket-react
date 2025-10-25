@@ -36,7 +36,7 @@ export default function Footer({ minimal }: { minimal: boolean }) {
 
       <Container>
         {!minimal && (
-          <div className="w-full py-10 flex flex-col md:flex-row justify-between gap-10 lg:gap-20 border-b border-white/10">
+          <div className="w-full py-10 flex flex-col md:flex-row justify-between gap-10 lg:gap-20">
             {/* Left Section */}
             <div className="flex flex-col max-w-md">
               <Logo className="w-36 h-15" />
@@ -109,7 +109,7 @@ export default function Footer({ minimal }: { minimal: boolean }) {
         )}
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-white py-5 text-center">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-white py-5 text-center border-t border-white/8">
           <span>
             <Translate text="footer.copyright" />
           </span>
