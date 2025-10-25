@@ -20,6 +20,8 @@ import {
   MdNorthEast,
   MdNorthWest,
 } from "react-icons/md";
+import Animate from "@/components/shared/Animate";
+import { fadeDu1, fadeDu2 } from "@/lib/animation";
 
 const contactItems = [
   {
@@ -74,7 +76,7 @@ const ContactPage: React.FC = () => {
       <Container className="px-5">
         <div className="md:grid md:grid-cols-2 md:gap-10">
           {/* Contact Info */}
-          <div className="flex flex-col justify-between">
+          <Animate variants={fadeDu1} className="flex flex-col justify-between">
             <div className="flex flex-col gap-3 mb-8">
               <p className="text-lg font-semibold text-neutral-400">
                 <Translate text="contact.contactUs" />
@@ -132,10 +134,10 @@ const ContactPage: React.FC = () => {
                 </Link>
               ))}
             </div>
-          </div>
+          </Animate>
 
           {/* Contact Form */}
-          <div className="space-y-6 mt-10 md:mt-0">
+          <Animate variants={fadeDu2} className="space-y-6 mt-10 md:mt-0">
             <FormProvider {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -195,7 +197,7 @@ const ContactPage: React.FC = () => {
                 </Button>
               </form>
             </FormProvider>
-          </div>
+          </Animate>
         </div>
       </Container>
     </section>
