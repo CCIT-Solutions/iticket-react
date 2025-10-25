@@ -25,7 +25,7 @@ export default function Checkout() {
 
   const params = useParams();
   const eventId = params.id;
-  const { t, lang } = useLang();
+  const { t, lang, isRTL } = useLang();
 
   const event = events.find((e) => e.id === Number(eventId));
 
@@ -114,6 +114,7 @@ export default function Checkout() {
                   value={selectedPayment}
                   onValueChange={setSelectedPayment}
                   className="space-y-3"
+                  dir={isRTL && "rtl"}
                 >
                   <Label
                     htmlFor="credit-card"
@@ -179,10 +180,7 @@ export default function Checkout() {
                       text="checkout.termsNotice"
                       components={{
                         payNow: (
-                          <span className="">
-                           
-                            "{t("checkout.payNow")}"
-                          </span>
+                          <span className="">"{t("checkout.payNow")}"</span>
                         ),
                         terms: (
                           <a
@@ -191,8 +189,7 @@ export default function Checkout() {
                             rel="noopener noreferrer"
                             className="font-semibold text-white hover:underline"
                           >
-                          
-                              {t("checkout.terms")}
+                            {t("checkout.terms")}
                           </a>
                         ),
                         privacy: (
@@ -202,7 +199,7 @@ export default function Checkout() {
                             rel="noopener noreferrer"
                             className="font-semibold text-white hover:underline"
                           >
-                              {t("checkout.privacy")}
+                            {t("checkout.privacy")}
                           </a>
                         ),
                         shareInfo: (
@@ -212,7 +209,7 @@ export default function Checkout() {
                             rel="noopener noreferrer"
                             className="font-semibold text-white hover:underline"
                           >
-                              {t("checkout.infoShare")}
+                            {t("checkout.infoShare")}
                           </a>
                         ),
                       }}
