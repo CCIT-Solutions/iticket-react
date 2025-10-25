@@ -122,7 +122,7 @@ const ContactPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="text-primary/60 group-hover:text-primary transition w-10 h-10 flex items-center justify-center rounded-full bg-primary/10">
+                  <div className="text-primary/60 hover:text-primary transition-colors duration-500 w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 hover:bg-primary/15 ">
                     {isRTL ? (
                       <MdNorthWest size={20} />
                     ) : (
