@@ -1,15 +1,18 @@
 "use client";
 
+import Animate from "@/components/shared/Animate";
 import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
 import { quickFilters } from "@/data/quickFilters";
 import { useLang } from "@/hooks/useLang";
+import { fadeD1 } from "@/lib/animation";
 
 function QuickFilters() {
   const { lang } = useLang();
 
   return (
-    <div className="mb-8 overflow-x-auto scrollbar-hide">
+    <Animate
+      variants={fadeD1} className="mb-8 overflow-x-auto scrollbar-hide">
       <Container>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
           {quickFilters.map((filter, index) => {
@@ -46,7 +49,7 @@ function QuickFilters() {
           })}
         </div>
       </Container>
-    </div>
+    </Animate>
   );
 }
 

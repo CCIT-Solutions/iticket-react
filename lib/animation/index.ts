@@ -1,6 +1,6 @@
 import { animate } from "@/lib/animation/animate";
 
-const duration = 0.8;
+const duration = 0.3;
 const delay = 0.1;
 
 // Fade

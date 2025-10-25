@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { useLang } from "@/hooks/useLang";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import Animate from "./Animate";
+import { fade } from "@/lib/animation";
 interface BreadcrumbProps {
   page?: string;
   between?: {
@@ -21,6 +23,9 @@ function MainBreadcrumb({ page, between = [] }: BreadcrumbProps) {
   const { t, isRTL } = useLang();
 
   return (
+    <Animate variants={fade}>
+
+   
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
@@ -70,6 +75,7 @@ function MainBreadcrumb({ page, between = [] }: BreadcrumbProps) {
         )}
       </BreadcrumbList>
     </Breadcrumb>
+     </Animate>
   );
 }
 

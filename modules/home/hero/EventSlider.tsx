@@ -10,13 +10,16 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Container from "@/components/shared/Container";
 import { useLang } from "@/hooks/useLang";
+import Animate from "@/components/shared/Animate";
+import { fadeD1, fadeDu1, fadeDu3 } from "@/lib/animation";
 
 const EventSlider = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const { isRTL, lang } = useLang();
 
   return (
-    <div className="my-8 relative">
+    <Animate
+      variants={fadeD1} className="my-8 relative">
       <Container>
         <Swiper
           key={isRTL ? "rtl" : "ltr"}
@@ -217,6 +220,10 @@ const EventSlider = () => {
       </Container>
 
       {/* Decorative side images */}
+      <Animate
+      variants={fadeDu3}>
+
+      
       <div
         className={cn(
           "absolute top-[12.5%] -z-10 w-[300px] h-[75%] hidden md:block",
@@ -245,7 +252,8 @@ const EventSlider = () => {
           className={cn("object-cover", isRTL ? "scale-x-[-1]" : "")}
         />
       </div>
-    </div>
+      </Animate>
+    </Animate>
   );
 };
 

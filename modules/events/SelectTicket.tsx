@@ -11,6 +11,9 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Location from "@/components/icons/Location";
+import Animate from "@/components/shared/Animate";
+import { fade, fadeDu1 } from "@/lib/animation";
+import Link from "next/link";
 
 export default function SelectTicket() {
   const params = useParams();
@@ -96,7 +99,7 @@ export default function SelectTicket() {
         {/* Left Column - Ticket Selection */}
         <div className="lg:order-1 order-2 flex justify-center lg:justify-start w-full">
           <div className="max-w-lg  w-full">
-            <div>
+            <Animate variants={fade}>
               <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold mb-2">Select Ticket</h1>
                 <div className="flex items-center gap-1 bg-neutral-900 rounded-lg py-2 px-4">
@@ -107,9 +110,9 @@ export default function SelectTicket() {
               <p className="text-neutral-400 text-sm">
                 (max tickets: {maxTickets})
               </p>
-            </div>
+            </Animate>
 
-            <div>
+            <Animate variants={fade}>
               {tickets.map((ticket, index) => (
                 <div key={ticket.id}>
                   {/* Date separator */}
@@ -158,12 +161,12 @@ export default function SelectTicket() {
                   </div>
                 </div>
               ))}
-            </div>
+            </Animate>
           </div>
         </div>
 
         {/* Right Column - Event Card */}
-        <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+        <Animate  variants={fadeDu1} className="flex justify-center lg:justify-end order-1 lg:order-2">
           <div className="bg-neutral-900 rounded-2xl overflow-hidden max-w-lg h-fit">
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-7 p-6 items-center w-full">
               {/* Event Image with Time Badge */}
@@ -218,13 +221,13 @@ export default function SelectTicket() {
                     {totalPrice || 450} {t("eventDetails.currency")}
                   </div>
                 </div>
-                <Button className="bg-neutral-200 hover:bg-white hover:text-black text-black transition-all py-6 rounded-2xl min-w-48 cursor-pointer font-semibold tracking-widest w-full sm:w-auto">
+                <Link href={`/events/${event?.id}/checkout`} className="flex bg-neutral-200 hover:bg-white hover:text-black text-black transition-all py-3 justify-center rounded-2xl min-w-48 cursor-pointer font-semibold tracking-widest w-full sm:w-auto">
                   Checkout
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
-        </div>
+        </Animate>
       </div>
     </Container>
   );

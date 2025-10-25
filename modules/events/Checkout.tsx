@@ -16,6 +16,8 @@ import { useParams } from "next/navigation";
 import { useLang } from "@/hooks/useLang";
 import { events } from "@/data/events";
 import Translate from "@/components/shared/Translate";
+import Animate from "@/components/shared/Animate";
+import { fade, fadeDu1 } from "@/lib/animation";
 
 export default function Checkout() {
   const [selectedPayment, setSelectedPayment] = useState("apple-pay");
@@ -54,7 +56,10 @@ export default function Checkout() {
           <div className="order-2 lg:order-1 flex h-fit justify-center lg:justify-start w-full">
             <div className="max-w-lg">
               {showError && (
-                <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 mb-6 flex items-center justify-between">
+                <Animate
+                  variants={fade}
+                  className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 mb-6 flex items-center justify-between"
+                >
                   <div className="flex items-center gap-3">
                     <div className="text-red-400 rounded-full p-1.5">
                       <DangerTriangle />
@@ -69,163 +74,167 @@ export default function Checkout() {
                   >
                     <LiaTimesSolid />
                   </button>
-                </div>
+                </Animate>
               )}
-
-              <div className="flex items-center justify-between mb-8">
-                <h1 className="text-3xl font-bold">
-                  <Translate text="checkout.title" />
-                </h1>
-                <div className="flex items-center gap-2 bg-neutral-900 rounded-lg py-2 px-4">
-                  <Clock className="w-5 h-5" />
-                  <span className="font-medium">12:12</span>
-                </div>
-              </div>
-
-              {/* Promo Code */}
-              <div className="mb-8">
-                <h2 className="text-lg font-semibold mb-4">
-                  <Translate text="checkout.promoCode" />
-                </h2>
-                <div className="flex gap-3">
-                  <div className="flex-1 relative">
-                    <PromoCode className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
-                    <input
-                      type="text"
-                      placeholder={t("checkout.promoPlaceholder")}
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                      className="w-full bg-neutral-950 border border-neutral-900 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-500 focus:outline-none focus:border-neutral-700"
-                    />
+              <Animate variants={fade}>
+                <div className="flex items-center justify-between mb-8">
+                  <h1 className="text-3xl font-bold">
+                    <Translate text="checkout.title" />
+                  </h1>
+                  <div className="flex items-center gap-2 bg-neutral-900 rounded-lg py-2 px-4">
+                    <Clock className="w-5 h-5" />
+                    <span className="font-medium">12:12</span>
                   </div>
-                  <button className="px-8 py-3.5 bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 rounded-xl font-medium transition-colors">
-                    <Translate text="checkout.apply" />
-                  </button>
                 </div>
-              </div>
 
-              {/* Payment Method */}
-              <div className="mb-8">
-                <h2 className="text-lg font-semibold mb-4">
-                  <Translate text="checkout.selectPayment" />
-                </h2>
-
-                <RadioGroup
-                  value={selectedPayment}
-                  onValueChange={setSelectedPayment}
-                  className="space-y-3"
-                  dir={isRTL ? "rtl" : "ltr"}
-                >
-                  <Label
-                    htmlFor="credit-card"
-                    className={`border rounded-xl p-5 flex items-center justify-between cursor-pointer transition-all h-16 ${
-                      selectedPayment === "credit-card"
-                        ? "border-primary bg-neutral-900/50"
-                        : "border-neutral-900 hover:border-neutral-800 bg-neutral-900/50"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <RadioGroupItem id="credit-card" value="credit-card" />
-                      <span className="font-medium">
-                        <Translate text="checkout.creditCards" />
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 relative h-4 w-20">
-                      <Image
-                        src={"/media/icons/credit-payment.png"}
-                        alt="Credit Cards"
-                        fill
+                {/* Promo Code */}
+                <div className="mb-8">
+                  <h2 className="text-lg font-semibold mb-4">
+                    <Translate text="checkout.promoCode" />
+                  </h2>
+                  <div className="flex gap-3">
+                    <div className="flex-1 relative">
+                      <PromoCode className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                      <input
+                        type="text"
+                        placeholder={t("checkout.promoPlaceholder")}
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        className="w-full bg-neutral-950 border border-neutral-900 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-500 focus:outline-none focus:border-neutral-700"
                       />
                     </div>
-                  </Label>
+                    <button className="px-8 py-3.5 bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 rounded-xl font-medium transition-colors">
+                      <Translate text="checkout.apply" />
+                    </button>
+                  </div>
+                </div>
 
-                  <Label
-                    htmlFor="apple-pay"
-                    className={`border rounded-xl p-5 flex items-center justify-between cursor-pointer transition-all h-16 ${
-                      selectedPayment === "apple-pay"
-                        ? "border-primary bg-neutral-950"
-                        : "border-neutral-900 hover:border-neutral-800 bg-neutral-950"
-                    }`}
+                {/* Payment Method */}
+                <div className="mb-8">
+                  <h2 className="text-lg font-semibold mb-4">
+                    <Translate text="checkout.selectPayment" />
+                  </h2>
+
+                  <RadioGroup
+                    value={selectedPayment}
+                    onValueChange={setSelectedPayment}
+                    className="space-y-3"
+                    dir={isRTL ? "rtl" : "ltr"}
                   >
-                    <div className="flex items-center gap-3">
-                      <RadioGroupItem id="apple-pay" value="apple-pay" />
-                      <span className="font-medium">
-                        <Translate text="checkout.applePay" />
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 relative h-5 w-10">
-                      <Image
-                        src={"/media/icons/apple-pay.png"}
-                        alt="Apple Pay"
-                        fill
-                      />
-                    </div>
-                  </Label>
-                </RadioGroup>
-              </div>
+                    <Label
+                      htmlFor="credit-card"
+                      className={`border rounded-xl p-5 flex items-center justify-between cursor-pointer transition-all h-16 ${
+                        selectedPayment === "credit-card"
+                          ? "border-primary bg-neutral-900/50"
+                          : "border-neutral-900 hover:border-neutral-800 bg-neutral-900/50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <RadioGroupItem id="credit-card" value="credit-card" />
+                        <span className="font-medium">
+                          <Translate text="checkout.creditCards" />
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 relative h-4 w-20">
+                        <Image
+                          src={"/media/icons/credit-payment.png"}
+                          alt="Credit Cards"
+                          fill
+                        />
+                      </div>
+                    </Label>
 
-              {/* Terms */}
-              <div className="mb-8">
-                <label className="flex items-start gap-3 cursor-pointer bg-neutral-950 rounded-lg p-3">
-                  <Checkbox
-                    checked={agreedToTerms}
-                    onCheckedChange={(checked) =>
-                      setAgreedToTerms(checked === true)
-                    }
-                    className="mt-0.5 border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:text-black data-[state=checked]:border-primary size-6 rounded-sm"
-                  />
+                    <Label
+                      htmlFor="apple-pay"
+                      className={`border rounded-xl p-5 flex items-center justify-between cursor-pointer transition-all h-16 ${
+                        selectedPayment === "apple-pay"
+                          ? "border-primary bg-neutral-950"
+                          : "border-neutral-900 hover:border-neutral-800 bg-neutral-950"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <RadioGroupItem id="apple-pay" value="apple-pay" />
+                        <span className="font-medium">
+                          <Translate text="checkout.applePay" />
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 relative h-5 w-10">
+                        <Image
+                          src={"/media/icons/apple-pay.png"}
+                          alt="Apple Pay"
+                          fill
+                        />
+                      </div>
+                    </Label>
+                  </RadioGroup>
+                </div>
 
-                  <span className="text-sm text-neutral-400 leading-relaxed">
-                    <Translate
-                      text="checkout.termsNotice"
-                      components={{
-                        payNow: (
-                          <span className="">"{t("checkout.payNow")}"</span>
-                        ),
-                        terms: (
-                          <a
-                            href="/terms"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-semibold text-white hover:underline"
-                          >
-                            {t("checkout.terms")}
-                          </a>
-                        ),
-                        privacy: (
-                          <a
-                            href="/privacy"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-semibold text-white hover:underline"
-                          >
-                            {t("checkout.privacy")}
-                          </a>
-                        ),
-                        shareInfo: (
-                          <a
-                            href="/data-sharing"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-semibold text-white hover:underline"
-                          >
-                            {t("checkout.infoShare")}
-                          </a>
-                        ),
-                      }}
+                {/* Terms */}
+                <div className="mb-8">
+                  <label className="flex items-start gap-3 cursor-pointer bg-neutral-950 rounded-lg p-3">
+                    <Checkbox
+                      checked={agreedToTerms}
+                      onCheckedChange={(checked) =>
+                        setAgreedToTerms(checked === true)
+                      }
+                      className="mt-0.5 border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:text-black data-[state=checked]:border-primary size-6 rounded-sm"
                     />
-                  </span>
-                </label>
-              </div>
 
-              <button className="w-full bg-white hover:bg-neutral-100 text-black font-semibold py-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                <Translate text="checkout.payNow" />
-              </button>
+                    <span className="text-sm text-neutral-400 leading-relaxed">
+                      <Translate
+                        text="checkout.termsNotice"
+                        components={{
+                          payNow: (
+                            <span className="">"{t("checkout.payNow")}"</span>
+                          ),
+                          terms: (
+                            <a
+                              href="/terms"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-white hover:underline"
+                            >
+                              {t("checkout.terms")}
+                            </a>
+                          ),
+                          privacy: (
+                            <a
+                              href="/privacy"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-white hover:underline"
+                            >
+                              {t("checkout.privacy")}
+                            </a>
+                          ),
+                          shareInfo: (
+                            <a
+                              href="/data-sharing"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-white hover:underline"
+                            >
+                              {t("checkout.infoShare")}
+                            </a>
+                          ),
+                        }}
+                      />
+                    </span>
+                  </label>
+                </div>
+
+                <button className="w-full bg-white hover:bg-neutral-100 text-black font-semibold py-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                  <Translate text="checkout.payNow" />
+                </button>
+              </Animate>
             </div>
           </div>
 
           {/* Right Column */}
-          <div className="order-1 lg:order-2 flex h-fit justify-center lg:justify-end w-full">
+          <Animate
+            variants={fadeDu1}
+            className="order-1 lg:order-2 flex h-fit justify-center lg:justify-end w-full"
+          >
             <div className="bg-neutral-900 rounded-2xl overflow-hidden lg:sticky lg:top-6 w-full max-w-lg">
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 p-6 lg:items-center">
                 <div className="relative w-full sm:w-fit">
@@ -316,7 +325,7 @@ export default function Checkout() {
                 </div>
               </div>
             </div>
-          </div>
+          </Animate>
         </div>
       </Container>
     </div>

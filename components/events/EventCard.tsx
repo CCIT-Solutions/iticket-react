@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Location from "../icons/Location";
 import { EventType } from "@/types/event";
+import Animate from "../shared/Animate";
+import { fade } from "@/lib/animation";
 
 function EventCard({ event }: { event: EventType }) {
   const { lang } = useLang();
@@ -13,7 +15,7 @@ function EventCard({ event }: { event: EventType }) {
       className="group cursor-pointer rounded-2xl overflow-hidden bg-neutral-900 hover:bg-neutral-800/70 transition-all duration-300 p-4"
     >
       {/* Event Image */}
-      <div className="relative h-56 overflow-hidden rounded-xl">
+      <Animate variants={fade} className="relative h-56 overflow-hidden rounded-xl">
         <Image
           src={`/media/images/events/${event.image}.jpg`}
           alt={event.title[lang]}
@@ -21,7 +23,7 @@ function EventCard({ event }: { event: EventType }) {
           className="object-cover"
           priority
         />
-      </div>
+      </Animate>
 
       {/* Event Details */}
       <div className="mt-4 flex justify-between items-center">

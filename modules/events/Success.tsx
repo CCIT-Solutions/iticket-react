@@ -6,6 +6,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { tickets } from "@/data/tickets";
 import Image from "next/image";
 import Container from "@/components/shared/Container";
+import Animate from "@/components/shared/Animate";
+import { fade, fadeDu1 } from "@/lib/animation";
 
 export default function TicketSuccess() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,19 +35,23 @@ export default function TicketSuccess() {
     <div className="min-h-screen py-16">
       <Container>
         {/* Success Icon and Title */}
-        <div className="flex flex-col items-center mb-16">
+        <Animate
+          variants={fade}
+          viewOnce
+          className="flex flex-col items-center mb-16"
+        >
           <div className="size-20 bg-[#22C55E] rounded-full flex items-center justify-center mb-6 relative">
             <Image src="/media/icons/success.png" alt={"Success Icon"} fill />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold">
             Your Booking Complete
           </h1>
-        </div>
+        </Animate>
 
         {/* Tickets Section */}
         <div className="mb-12">
           {/* Header with Navigation */}
-          <div className="flex items-center justify-between mb-8">
+          <Animate variants={fade} className="flex items-center justify-between mb-8">
             <h2 className="text-sm font-semibold tracking-wider uppercase text-neutral-300">
               YOUR TICKETS
             </h2>
@@ -65,10 +71,10 @@ export default function TicketSuccess() {
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
-          </div>
+          </Animate>
 
           {/* Tickets Grid */}
-          <div className="flex gap-6 flex-wrap justify-center">
+          <Animate variants={fadeDu1} className="flex gap-6 flex-wrap justify-center">
             {getVisibleTickets().map((ticket) => (
               <div
                 key={ticket.id}
@@ -147,22 +153,22 @@ export default function TicketSuccess() {
                   </div>
                 </div>
                 <div className="px-5 pb-5">
-                   {/* Download Button */}
+                  {/* Download Button */}
                   <button className="w-full bg-white hover:bg-neutral-100 text-black font-semibold py-3 rounded-xl transition-colors cursor-pointer">
                     Download Ticket
                   </button>
                 </div>
               </div>
             ))}
-          </div>
+          </Animate>
         </div>
 
         {/* Discover More Events Button */}
-        <div className="flex justify-center ">
+        <Animate variants={fadeDu1} className="flex justify-center ">
           <button className="bg-transparent hover:bg-neutral-900 border-2 border-white text-white font-semibold px-12 py-4 rounded-xl transition-colors  cursor-pointer">
             Discover More Events
           </button>
-        </div>
+        </Animate>
       </Container>
     </div>
   );

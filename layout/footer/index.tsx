@@ -10,9 +10,11 @@ import Phone from "@/components/icons/Phone";
 import Email from "@/components/icons/Email";
 import Translate from "@/components/shared/Translate";
 import { useLang } from "@/hooks/useLang";
+import Animate from "@/components/shared/Animate";
+import { fadeDu2 } from "@/lib/animation";
 
 export default function Footer({ minimal }: { minimal: boolean }) {
-  const {t} = useLang()
+  const { t } = useLang();
   return (
     <footer className="relative w-full text-neutral-300">
       {/* Background Image */}
@@ -33,99 +35,100 @@ export default function Footer({ minimal }: { minimal: boolean }) {
           />
         </div>
       )}
+      <Animate element="footer" variants={fadeDu2} viewOnce>
+        <Container>
+          {!minimal && (
+            <div className="w-full py-10 flex flex-col md:flex-row justify-between gap-10 lg:gap-20">
+              {/* Left Section */}
+              <div className="flex flex-col max-w-md">
+                <Logo className="w-36 h-15" />
 
-      <Container>
-        {!minimal && (
-          <div className="w-full py-10 flex flex-col md:flex-row justify-between gap-10 lg:gap-20">
-            {/* Left Section */}
-            <div className="flex flex-col max-w-md">
-              <Logo className="w-36 h-15" />
+                <p className="text-[13px] text-neutral-400 leading-relaxed mt-2">
+                  <Translate text="footer.description" />
+                </p>
 
-              <p className="text-[13px] text-neutral-400 leading-relaxed mt-2">
-                <Translate text="footer.description" />
-              </p>
-
-              <div className="space-y-4 text-sm mt-5">
-                <div className="flex items-center gap-3">
-                  <div className="size-9 bg-white/5 rounded-full flex justify-center items-center">
-                    <Phone />
+                <div className="space-y-4 text-sm mt-5">
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 bg-white/5 rounded-full flex justify-center items-center">
+                      <Phone />
+                    </div>
+                    <span className="text-sm" dir="ltr">
+                      <Translate text="footer.phoneNumber" />
+                    </span>
                   </div>
-                  <span className="text-sm"  dir="ltr">
-                    <Translate text="footer.phoneNumber" />
-                  </span>
+
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 bg-white/5 rounded-full flex justify-center items-center">
+                      <Email />
+                    </div>
+                    <span className="text-sm" dir="ltr">
+                      <Translate text="footer.email" />
+                    </span>
+                  </div>
                 </div>
+              </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="size-9 bg-white/5 rounded-full flex justify-center items-center">
-                    <Email />
-                  </div>
-                  <span className="text-sm" dir="ltr">
-                    <Translate text="footer.email"/>
+              {/* Right Section */}
+              <div className="flex flex-col max-w-md w-full">
+                <h3 className="text-white text-lg tracking-wider">
+                  <Translate text="footer.newsletter.title" />{" "}
+                  <span className="text-primary">
+                    <Translate text="footer.newsletter.highlight" />
                   </span>
+                </h3>
+
+                <p className="text-sm text-neutral-400 mt-6">
+                  <Translate text="footer.newsletter.text" />
+                </p>
+
+                <form className="flex w-full items-center mt-12 gap-3">
+                  <input
+                    type="email"
+                    placeholder={t("footer.newsletter.email")}
+                    className="flex-1 bg-white/5 rounded-md text-white text-sm px-4 py-2 outline-none placeholder:text-neutral-500"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-white text-black text-sm font-semibold px-5 py-2 rounded-lg mr-1"
+                  >
+                    <Translate text="footer.newsletter.button" />
+                  </button>
+                </form>
+
+                <div className="flex items-center gap-4 pt-5">
+                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                    <FaFacebookF className="w-4 h-4" />
+                  </div>
+                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                    <FaXTwitter className="w-4 h-4" />
+                  </div>
+                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
+                    <FaInstagram className="w-4 h-4" />
+                  </div>
                 </div>
               </div>
             </div>
+          )}
 
-            {/* Right Section */}
-            <div className="flex flex-col max-w-md w-full">
-              <h3 className="text-white text-lg tracking-wider">
-                <Translate text="footer.newsletter.title" />{" "}
-                <span className="text-primary">
-                  <Translate text="footer.newsletter.highlight" />
-                </span>
-              </h3>
-
-              <p className="text-sm text-neutral-400 mt-6">
-                <Translate text="footer.newsletter.text" />
-              </p>
-
-              <form className="flex w-full items-center mt-12 gap-3">
-                <input
-                  type="email"
-                  placeholder= {t("footer.newsletter.email")}
-                  className="flex-1 bg-white/5 rounded-md text-white text-sm px-4 py-2 outline-none placeholder:text-neutral-500"
-                />
-                <button
-                  type="submit"
-                  className="bg-white text-black text-sm font-semibold px-5 py-2 rounded-lg mr-1"
-                >
-                  <Translate text="footer.newsletter.button" />
-                </button>
-              </form>
-
-              <div className="flex items-center gap-4 pt-5">
-                <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                  <FaFacebookF className="w-4 h-4" />
-                </div>
-                <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                  <FaXTwitter className="w-4 h-4" />
-                </div>
-                <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                  <FaInstagram className="w-4 h-4" />
-                </div>
-              </div>
+          {/* Bottom Bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-white py-5 text-center border-t border-white/8">
+            <span>
+              <Translate text="footer.copyright" />
+            </span>
+            <div className="flex gap-5 sm:gap-20 text-white">
+              <Link href="/contact" className="hover:text-white">
+                <Translate text="footer.links.contact" />
+              </Link>
+              <Link href="/privacy" className="hover:text-white">
+                <Translate text="footer.links.privacy" />
+              </Link>
+              <Link href="/terms" className="hover:text-white">
+                <Translate text="footer.links.terms" />
+              </Link>
             </div>
           </div>
-        )}
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-white py-5 text-center border-t border-white/8">
-          <span>
-            <Translate text="footer.copyright" />
-          </span>
-          <div className="flex gap-5 sm:gap-20 text-white">
-            <Link href="/contact" className="hover:text-white">
-              <Translate text="footer.links.contact" />
-            </Link>
-            <Link href="/privacy" className="hover:text-white">
-              <Translate text="footer.links.privacy" />
-            </Link>
-            <Link href="/terms" className="hover:text-white">
-              <Translate text="footer.links.terms" />
-            </Link>
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </Animate>
     </footer>
   );
 }

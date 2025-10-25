@@ -1,22 +1,22 @@
 "use client";
-
-import Location from "@/components/icons/Location";
+import dynamic from "next/dynamic";
 import Container from "@/components/shared/Container";
 import { eventCategories } from "@/data/eventCategories";
 import { events } from "@/data/events";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { useState } from "react";
 import Translate from "@/components/shared/Translate";
 import { useLang } from "@/hooks/useLang";
-import Link from "next/link";
-import EventCard from "@/components/events/EventCard";
+import Animate from "@/components/shared/Animate";
+import { fade } from "@/lib/animation";
+const EventCard = dynamic(() => import("@/components/events/EventCard"));
+
 
 function Events() {
   const [activeCategory, setActiveCategory] = useState("Music");
   const [visibleCount, setVisibleCount] = useState(9);
-  const {lang} = useLang()
+  const { lang } = useLang();
 
   // Filter events based on active category
   const filteredEvents =
@@ -33,41 +33,47 @@ function Events() {
     <section className="min-h-screen">
       <Container>
         <div>
-          <h2 className="text-3xl font-bold mb-6">
+          <Animate
+            element="h2"
+            variants={fade}
+            className="text-3xl font-bold mb-6"
+          >
             <Translate text="events.title" />
-          </h2>
+          </Animate>
 
           {/* Category Filters */}
           <div className="flex scrollbar-hide flex-wrap gap-3">
             {eventCategories.map((category, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setActiveCategory(category.label);
-                  setVisibleCount(9); // reset on category change
-                }}
-                className={cn(
-                  "flex items-stretch justify-center space-x-2 py-2.5 rounded-md text-sm font-medium transition-all whitespace-nowrap cursor-pointer",
-                  activeCategory === category.label
-                    ? "bg-white text-black"
-                    : "bg-neutral-900 text-neutral-200 hover:bg-neutral-800",
-                  category.label === "All" ? "w-20" : "w-28"
-                )}
-              >
-                <category.icon />
-                <span>
-                  <Translate
-                    text={`events.categories.${category.label.toLowerCase()}`}
-                  />
-                </span>
-              </button>
+              <Animate variants={fade} key={index}>
+                <button
+                 
+                  onClick={() => {
+                    setActiveCategory(category.label);
+                    setVisibleCount(9); // reset on category change
+                  }}
+                  className={cn(
+                    "flex items-stretch justify-center space-x-2 py-2.5 rounded-md text-sm font-medium transition-all whitespace-nowrap cursor-pointer",
+                    activeCategory === category.label
+                      ? "bg-white text-black"
+                      : "bg-neutral-900 text-neutral-200 hover:bg-neutral-800",
+                    category.label === "All" ? "w-20" : "w-28"
+                  )}
+                >
+                  <category.icon />
+                  <span>
+                    <Translate
+                      text={`events.categories.${category.label.toLowerCase()}`}
+                    />
+                  </span>
+                </button>
+              </Animate>
             ))}
           </div>
 
           {/* Event Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
             {filteredEvents.slice(0, visibleCount).map((event) => (
-             <EventCard event={event} key={event.id}/>
+              <EventCard event={event} key={event.id} />
             ))}
           </div>
 

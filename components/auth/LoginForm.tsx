@@ -17,6 +17,8 @@ import Lock from "@/components/icons/Lock";
 import Translate from "@/components/shared/Translate";
 import { cn } from "@/lib/utils";
 import { CustomFormPassword } from "@/components/custom/CustomFormPassword";
+import { fade } from "@/lib/animation";
+import Animate from "../shared/Animate";
 
 type LoginFormType = z.infer<typeof LoginSchema>;
 
@@ -47,7 +49,7 @@ function LoginForm({
   };
 
   return (
-    <div className="flex items-center justify-center lg:bg-transparent">
+    <Animate variants={fade} className="flex items-center justify-center lg:bg-transparent">
       <div className="bg-black/80 p-8 sm:p-10 rounded-2xl shadow-2xl w-full max-w-lg">
         <h2 className="text-white text-2xl font-semibold">
           <Translate text="auth.welcomeBack" />
@@ -140,7 +142,7 @@ function LoginForm({
           </form>
         </FormProvider>
       </div>
-    </div>
+    </Animate>
   );
 }
 
