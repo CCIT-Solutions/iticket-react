@@ -114,7 +114,7 @@ export default function Checkout() {
                   value={selectedPayment}
                   onValueChange={setSelectedPayment}
                   className="space-y-3"
-                  dir={isRTL && "rtl"}
+                  dir={isRTL ? "rtl" : "ltr"}
                 >
                   <Label
                     htmlFor="credit-card"
