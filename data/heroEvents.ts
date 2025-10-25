@@ -1,0 +1,67 @@
+export const heroEvents = [
+  {
+    artist: { en: "Amr Diab", ar: "عمرو دياب" },
+    event: { en: "Music", ar: "موسيقى" },
+    location: {
+      en: "BLVD Arena, Riyadh",
+      ar: "بوليفارد أرينا، الرياض",
+    },
+    type: { en: "Concert", ar: "حفلة موسيقية" },
+    date: { en: "May 26 - 28, 2025", ar: "26 - 28 مايو 2025" },
+    openGate: { en: "09:00 PM", ar: "09:00 مساءً" },
+    barcode: "barcode",
+    image: "event-1",
+  },
+  {
+    artist: { en: "Mohammed Abdu", ar: "محمد عبده" },
+    event: { en: "Saudi Legend Night", ar: "ليلة الأسطورة السعودية" },
+    type: { en: "Concert", ar: "حفلة موسيقية" },
+    location: {
+      en: "King Abdullah Sports City, Jeddah",
+      ar: "مدينة الملك عبد الله الرياضية، جدة",
+    },
+    date: { en: "June 12, 2025", ar: "12 يونيو 2025" },
+    openGate: { en: "08:30 PM", ar: "08:30 مساءً" },
+    barcode: "barcode",
+    image: "event-2",
+  },
+  {
+    artist: { en: "Nancy Ajram", ar: "نانسي عجرم" },
+    event: { en: "Red Sea Music Fest", ar: "مهرجان البحر الأحمر للموسيقى" },
+    type: { en: "Concert", ar: "حفلة موسيقية" },
+    location: {
+      en: "Jeddah Corniche, Jeddah",
+      ar: "كورنيش جدة، جدة",
+    },
+    date: { en: "July 4, 2025", ar: "4 يوليو 2025" },
+    openGate: { en: "09:00 PM", ar: "09:00 مساءً" },
+    barcode: "barcode",
+    image: "event-3",
+  },
+  {
+    artist: { en: "Assala Nasri", ar: "أصالة نصري" },
+    event: { en: "Summer Vibes", ar: "أجواء الصيف" },
+    type: { en: "Concert", ar: "حفلة موسيقية" },
+    location: {
+      en: "AlUla Open Air Theatre, AlUla",
+      ar: "مسرح العلا المفتوح، العلا",
+    },
+    date: { en: "August 22, 2025", ar: "22 أغسطس 2025" },
+    openGate: { en: "08:00 PM", ar: "08:00 مساءً" },
+    barcode: "barcode",
+    image: "event-4",
+  },
+  {
+    artist: { en: "Tamer Ashour", ar: "تامر عاشور" },
+    event: { en: "NEOM Nights", ar: "ليالي نيوم" },
+    type: { en: "Concert", ar: "حفلة موسيقية" },
+    location: {
+      en: "NEOM Desert Stage, Tabuk",
+      ar: "مسرح صحراء نيوم، تبوك",
+    },
+    date: { en: "September 18, 2025", ar: "18 سبتمبر 2025" },
+    openGate: { en: "09:30 PM", ar: "09:30 مساءً" },
+    barcode: "barcode",
+    image: "event-5",
+  },
+];

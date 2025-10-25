@@ -1,0 +1,41 @@
+import Image from "next/image";
+import Logo from "@/components/shared/Logo";
+import Translate from "@/components/shared/Translate";
+import Container from "@/components/shared/Container";
+import RegisterForm from "@/components/auth/RegisterForm";
+
+const RegisterPage: React.FC = () => {
+  return (
+    <div className="relative py-10 min-h-[81vh]">
+      {/* Background section */}
+      <div className="h-full w-full absolute inset-0 -z-1">
+        <Image
+          src="/media/images/auth/auth-bg.jpg"
+          alt="Concert Background"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
+      <Container className="flex items-center justify-center">
+        <div className="relative hidden lg:flex w-1/2 items-center overflow-hidden">
+          <div className=" text-white max-w-md">
+            <Logo className="w-60 h-30" />
+            <h1 className="text-6xl font-bold my-6 leading-[65px]">
+              <Translate text="auth.joinUs" />
+            </h1>
+          </div>
+        </div>
+
+        {/* Form Section */}
+        <div className="w-full lg:w-1/2">
+           <RegisterForm />
+        </div>
+      
+      </Container>
+    </div>
+  );
+};
+
+export default RegisterPage;

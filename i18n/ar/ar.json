@@ -1,0 +1,225 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "selectTicket": "اختر تذكرتك",
+    "checkout": "الدفع"
+  },
+
+  "footer": {
+    "terms": "الشروط والأحكام",
+    "privacy": "سياسة الخصوصية",
+    "contact": "تواصل معنا",
+    "poweredBy": "تشغيل بواسطة",
+
+    "description": "هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ إلى حد ما.",
+    "phoneNumber": "+966 234 567 890",
+    "email": "support24@iticket.com",
+    "newsletter": {
+      "title": "النشرة",
+      "email": "البريد الإلكتروني",
+      "highlight": "البريدية",
+      "text": "إذا كنت ترغب في استلام أحدث عروضنا وخصوماتنا الأسبوعية، اشترك معنا.",
+      "button": "اشترك الآن"
+    },
+    "links": {
+      "contact": "اتصل بنا",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الخدمة"
+    },
+    "copyright": "حقوق النشر © iTicket. 2025. جميع الحقوق محفوظة."
+  },
+
+  "common": {
+    "close": "إغلاق",
+    "sending": "جاري الإرسال...",
+    "retry": "إعادة المحاولة",
+    "somethingwrong": "حدث خطأ غير متوقع",
+    "noResult": "لا توجد نتائج متاحة",
+    "clear": "مسح",
+    "search": "ابحث...",
+    "selectAll": "تحديد الكل",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "تم بنجاح",
+    "validationError": "البيانات المدخلة غير صالحة",
+    "cancel": "إلغاء"
+  },
+
+  "noInternet": {
+    "noInternet": "غير متصل بالإنترنت",
+    "check": "يرجى التحقق من الاتصال بالإنترنت ثم المحاولة مرة أخرى"
+  },
+
+  "home": {
+    "heroTitle": "إدارة متكاملة لعيادتك",
+    "heroSubtitle": "تحكم كامل في عملياتك اليومية",
+    "heroDescription": "نظام ذكي لإدارة المواعيد، ملفات المرضى، التنبيهات التلقائية، والتقارير الشاملة بسهولة وسرعة.",
+    "getStarted": "ابدأ الآن",
+    "contactUs": "تواصل معنا",
+    "benefits": {
+      "title": "مزايا استخدام",
+      "subtitle": "نظام إيليت كلينكس",
+      "description": "حل متكامل لإدارة جميع جوانب العيادة الطبية بكفاءة عالية.",
+      "features": [
+        "رفع كفاءة العمل",
+        "تحسين تجربة المرضى",
+        "حماية وأمان البيانات",
+        "خفض التكاليف التشغيلية"
+      ],
+      "getStarted": "جرّبه الآن",
+      "contactUs": "اطلب استشارة مجانية",
+      "imageAlt": "طبيب يستخدم تطبيق العيادة"
+    },
+    "mobile": {
+      "title": "تطبيق إيليت كلينكس متاح الآن",
+      "subtitle": "لأنظمة iOS و Android",
+      "available": "متوفر على",
+      "appStore": "متجر آبل",
+      "playStore": "متجر جوجل بلاي",
+      "imageAlt": "واجهة تطبيق إيليت كلينكس على الهاتف"
+    }
+  },
+
+  "cta": {
+    "title": {
+      "appName": "iTicket",
+      "availableFor": "متاح الآن على",
+      "platforms": "iOS و Android"
+    },
+    "availableOn": "متاح على",
+    "appStore": "متجر التطبيقات",
+    "playStore": "متجر بلاي"
+  },
+
+  "events": {
+    "title": "جميع الفعاليات",
+    "loadMore": "عرض المزيد من الفعاليات",
+    "categories": {
+      "all": "الكل",
+      "music": "موسيقى",
+      "sport": "رياضة",
+      "art": "فن",
+      "theatre": "مسرح",
+      "conference": "مؤتمر",
+      "festival": "مهرجان",
+      "cinema": "سينما",
+      "wrestling": "مصارعة"
+    }
+  },
+
+  "eventDetails": {
+    "home": "الرئيسية",
+    "onTour": "جولة عالمية",
+    "openGate": "فتح الأبواب",
+    "lastEntry": "آخر دخول:",
+    "about": "عن الحدث",
+    "musicInfo": "معلومات الموسيقى",
+    "dressCode": "قواعد اللباس",
+    "rules": "القواعد",
+    "location": "الموقع",
+    "getDirections": "عرض الاتجاهات",
+    "contactUs": "تواصل معنا للمساعدة",
+    "priceFrom": "السعر يبدأ من",
+    "currency": "ر.س",
+    "eventsYouMightLike": "فعاليات قد تعجبك",
+    "getTicket": "احجز تذكرتك"
+  },
+
+  "auth": {
+    "joinUs": "أفضل مكان للعثور على الفعاليات التي تحبها.",
+    "title": "تسجيل حساب",
+    "name": "الاسم الكامل",
+    "namePlaceholder": "أدخل اسمك الكامل",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "عنوان البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "phonePlaceholder": "أدخل رقم الهاتف",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "signUp": "تسجيل",
+    "signingUp": "جاري التسجيل...",
+    "or": "أو",
+    "google": "التسجيل عبر جوجل",
+    "haveAccount": "هل لديك حساب؟",
+    "signIn": "تسجيل الدخول",
+    "welcomeBack": "مرحباً بعودتك!",
+    "signInToAccount": "تسجيل الدخول إلى حسابك",
+    "createNewAccount": "انضم إلينا وأنشئ حساباً جديداً",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "register": "إنشاء حساب جديد",
+    "validation": {
+      "nameMin": "يجب أن يكون اسم العيادة حرفين على الأقل",
+      "licenseNumberRequired": "رقم الترخيص مطلوب",
+      "licenseNumberNumeric": "يجب أن يكون رقم الترخيص رقماً",
+      "locationUrl": "يرجى إدخال رابط خرائط Google صالح",
+      "phoneNumberMin": "يجب أن يكون رقم الهاتف 10 أرقام على الأقل",
+      "phoneNumberValid": "يرجى إدخال رقم هاتف صحيح",
+      "whatsappNumberValid": "يرجى إدخال رقم واتساب صحيح",
+      "specialtiesRequired": " يرجى اختيار تخصص واحد على الأقل",
+      "specialOfferMin": "يجب أن يكون العرض الخاص至少 10 أحرف على الأقل",
+      "emailValid": "يرجى إدخال بريد إلكتروني صالح",
+      "emailMin": "يجب أن يحتوي البريد الإلكتروني على 5 أحرف على الأقل",
+      "passwordMin": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+      "passwordStrong": "يجب أن تحتوي كلمة المرور على أحرف وأرقام",
+      "termsRequired": "يجب الموافقة على الشروط وسياسة الخصوصية للمتابعة"
+    }
+  },
+
+  "checkout": {
+    "paymentFailed": "فشل في عملية الدفع، يرجى المحاولة مرة أخرى.",
+    "title": "الدفع",
+    "promoCode": "رمز الخصم",
+    "promoPlaceholder": "أدخل رمز الخصم",
+    "apply": "تفعيل",
+    "selectPayment": "اختر طريقة الدفع",
+    "creditCards": "البطاقات الائتمانية",
+    "applePay": "Apple Pay",
+    "termsNotice": "بالنقر على <payNow></payNow>، فإنني أوافق على <terms></terms> وأقر بأنني قرأت <privacy></privacy>. كما أوافق على أن تقوم Eventis بـ <shareInfo></shareInfo> مع منظم الحدث.",
+    "payNow": "ادفع الآن",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية",
+    "infoShare": "مشاركة معلوماتي",
+    "tickets": "التذاكر",
+    "ticketsCount": "تذاكر",
+    "summary": "تفاصيل الدفع",
+    "subtotal": "المجموع الفرعي",
+    "fees": "الرسوم",
+    "total": "الإجمالي"
+  },
+  "success": {
+    "title": "تمت عملية الشراء بنجاح!",
+    "description": "تم تفعيل حسابك الآن!",
+    "button": "ابدأ الآن"
+  },
+  "contact": {
+    "getInTouch": "تواصل معنا",
+    "contactUs": "اتصل بنا",
+    "welcomeMessage": "نحن هنا للإجابة على أي استفسار لديك.",
+    "feelFree": " لا تتردد في التواصل معنا وسنرد عليك في أقرب وقت ممكن",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "message": "رسالتك",
+    "namePlaceholder": "أدخل اسمك",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "messagePlaceholder": "اكتب ما تفكر فيه...",
+    "sendMessage": "إرسال",
+    "successMessage": "تم إرسال رسالتك بنجاح! سنعاود الاتصال بك قريبًا.",
+    "contactInfo": "معلومات التواصل",
+    "emailUs": "راسلنا",
+    "callUs": "اتصل بنا",
+    "ourLocation": "موقعنا",
+    "address": "شارع عبدالعزيز 123، الرياض ، المملكة العربية السعودية"
+  },
+  "terms": {
+    "termsAndConditions": "الشروط والأحكام",
+    "pleaseReadCarefully": "يرجى قراءة هذه الشروط والأحكام بعناية",
+    "introduction": "مقدمة",
+    "userObligations": "التزامات المستخدم",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termination": "إنهاء الاتفاق",
+    "iAccept": "أوافق على ",
+    "terms": "الشروط والأحكام",
+    "and": " و ",
+    "privacy": "سياسة الخصوصية"
+  }
+}

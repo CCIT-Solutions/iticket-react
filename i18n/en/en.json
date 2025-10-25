@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "home": "Home",
+    "selectTicket": "Select Ticket",
+    "checkout": "Checkout"
+  },
+  "footer": {
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Us",
+    "poweredBy": "Powered By",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere auctor pretium. Fusce tortor sapien, molestie a risus vitae, sodales dignissim est. Etiam quam nisl, finibus vel justo at, interdum laoreet turpis.",
+    "phoneNumber": "+966 234 567 890",
+    "email": "support24@iticket.com",
+    "newsletter": {
+      "title": "Newsletter",
+      "email": "Your Email",
+      "highlight": "Signup",
+      "text": "If you want to receive our weekly updates about new offers and discounts, signup below.",
+      "button": "SUBSCRIBE"
+    },
+    "links": {
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "copyright": "Copyright ©ITicket. 2025. All rights reserved"
+  },
+  "common": {
+    "close": "Close",
+    "sending": "Sending...",
+    "retry": "Retry",
+    "somethingwrong": "Something Wrong",
+    "noResult": "No results found.",
+    "clear": "Clear",
+    "search": "Search...",
+    "selectAll": "Select all",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "validationError": "Validation Error",
+    "cancel": "Cancel"
+  },
+  "noInternet": {
+    "noInternet": "No Internet Connection",
+    "check": "Please check your internet connection and try again"
+  },
+  "home": {
+    "heroTitle": "",
+    "heroSubtitle": "Operations with Our System",
+    "heroDescription": "",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us"
+  },
+  "cta": {
+    "title": {
+      "appName": "ITicket",
+      "availableFor": "is Available For",
+      "platforms": "iOS and Android"
+    },
+    "availableOn": "Available on",
+    "appStore": "App Store",
+    "playStore": "Play Store"
+  },
+  "events": {
+    "title": "All Events",
+    "loadMore": "Load More Events",
+    "categories": {
+      "all": "All",
+      "music": "Music",
+      "sport": "Sport",
+      "art": "Art",
+      "theatre": "Theatre",
+      "conference": "Conference",
+      "festival": "Festival",
+      "cinema": "Cinema",
+      "wrestling": "Wrestling"
+    }
+  },
+  "eventDetails": {
+    "home": "Home",
+    "onTour": "ON WORLD TOUR",
+    "openGate": "OPEN GATE",
+    "lastEntry": "Last Entry:",
+    "about": "About",
+    "musicInfo": "Music Info",
+    "dressCode": "Dress Code",
+    "rules": "Rules",
+    "location": "Location",
+    "getDirections": "Get Directions",
+    "contactUs": "Contact Us For Help",
+    "priceFrom": "Price from",
+    "currency": "SAR",
+    "eventsYouMightLike": "Events You Might Like",
+    "getTicket": "Get a Ticket"
+  },
+  "auth": {
+    "joinUs": "Best Place to Find Events You Love.",
+    "title": "Create an account",
+    "name": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "email": "Email",
+    "emailPlaceholder": "Email address",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Phone number",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signUp": "Sign Up",
+    "signingUp": "Signing up...",
+    "or": "or",
+    "google": "Sign up with Google",
+    "haveAccount": "Have an account?",
+    "signIn": "Sign In",
+    "welcomeBack": "Hey! Welcome back",
+    "signInToAccount": "Sign In to your account",
+    "createNewAccount": "Join us! And Create a new account",
+    "dontHaveAccount": "Don’t have an account",
+    "register": "Sign Up",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "licenseNumberRequired": "License number is required",
+      "licenseNumberNumeric": "License number must be numeric",
+      "locationUrl": "Please enter a valid Google Maps URL",
+      "phoneNumberMin": "Phone number must be at least 10 digits",
+      "phoneNumberValid": "Please enter a valid phone number",
+      "whatsappNumberValid": "Please enter a valid WhatsApp number",
+      "specialtiesRequired": "At least one specialty is required",
+      "specialOfferMin": "Special offer must be at least 10 characters",
+      "emailValid": "Please enter a valid email address",
+      "emailMin": "Email must be at least 5 characters",
+      "passwordMin": "Password must be at least 6 characters long",
+      "passwordStrong": "Password must include both letters and numbers",
+      "termsRequired": "You must accept the terms and privacy policy"
+    }
+  },
+  "checkout": {
+    "paymentFailed": "Failed Payment. Please try again.",
+    "title": "Checkout",
+    "promoCode": "Promo Code",
+    "promoPlaceholder": "Enter promo code",
+    "apply": "Apply",
+    "selectPayment": "Select a payment method",
+    "creditCards": "Credit Cards",
+    "applePay": "Apple Pay",
+    "termsNotice": "By clicking <payNow></payNow>, I accept the <terms></terms> and have read the <privacy></privacy>. I agree that Eventis may <shareInfo></shareInfo> with the event organizer.",
+    "payNow": "Pay Now",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "infoShare": "share my information",
+    "tickets": "Tickets",
+    "ticketsCount": "Tickets",
+    "summary": "Summary",
+    "subtotal": "Subtotal",
+    "fees": "Fees",
+    "total": "Total"
+  },
+  "success": {
+    "title": "Your Purchase Was Successful!",
+    "description": "Your account is active now!",
+    "button": "Get Started"
+  },
+  "contact": {
+    "getInTouch": "Get in Touch",
+    "contactUs": "Contact Us",
+    "welcomeMessage": "We’re here to answer any questions you may have.",
+    "feelFree": "Feel free to reach out and we’ll respond as soon as possible.",
+    "name": "Full Name",
+    "email": "Email Address",
+    "message": "Your Message",
+    "namePlaceholder": "Enter your full name",
+    "emailPlaceholder": "Enter your email address",
+    "messagePlaceholder": "Write your message here...",
+    "sendMessage": "Send Message",
+    "successMessage": "Your message has been sent successfully! We’ll get back to you soon.",
+    "contactInfo": "Contact Information",
+    "emailUs": "Email Us",
+    "callUs": "Call Us",
+    "ourLocation": "Our Location",
+    "address": "123 Abdulaziz St., Riyadh, Saudi Arabia"
+  },
+  "terms": {
+    "termsAndConditions": "Terms and Conditions",
+    "pleaseReadCarefully": "Please read these terms and conditions carefully",
+    "introduction": "Introduction",
+    "userObligations": "User Obligations",
+    "privacyPolicy": "Privacy Policy",
+    "termination": "Termination",
+    "iAccept": "I accept the ",
+    "terms": "Terms and Conditions",
+    "and": " and ",
+    "privacy": "Privacy Policy"
+  }
+}
