@@ -12,6 +12,7 @@ import Translate from "@/components/shared/Translate";
 import { useLang } from "@/hooks/useLang";
 import Animate from "@/components/shared/Animate";
 import { fadeDu2 } from "@/lib/animation";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function Footer({ minimal }: { minimal: boolean }) {
   const { t } = useLang();
@@ -35,6 +36,26 @@ export default function Footer({ minimal }: { minimal: boolean }) {
           />
         </div>
       )}
+      <div
+        className="w-full absolute left-0  xl:-top-[200px] 
+        xl:h-[calc(100%+200px)]
+          lg:-top-[150px] lg:h-[calc(100%+150px)]
+          md:-top-[100px] md:h-[calc(100%+100px)] 
+          -bottom-0 h-[calc(700px)]
+          
+          -z-2"
+      >
+
+      
+        <SparklesCore
+          background="transparent"
+          minSize={0.4}
+          maxSize={1}
+          particleDensity={10}
+          className="w-full h-full"
+          particleColor="#8ef25150"
+        />
+      </div>
       <Animate element="footer" variants={fadeDu2} viewOnce>
         <Container>
           {!minimal && (

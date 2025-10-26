@@ -38,7 +38,7 @@ function EventCard({ event }: { event: EventType }) {
       </div>
 
       {/* Title */}
-      <h3 className="mt-3 text-white text-2xl font-bold group-hover:text-emerald-400 transition-colors">
+      <h3 className="mt-3 text-neutral-200 text-2xl font-bold group-hover:text-white transition-colors">
         {event.title[lang]}
       </h3>
 
