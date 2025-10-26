@@ -21,7 +21,7 @@ export default function Footer({ minimal }: { minimal: boolean }) {
       {/* Background Image */}
       {!minimal && (
         <div
-          className="absolute start-0 -z-1  w-full overflow-hidden
+          className="absolute start-0 -z-2  w-full overflow-hidden
           xl:-top-[200px] xl:h-[calc(100%+200px)]
           lg:-top-[150px] lg:h-[calc(100%+150px)]
           md:-top-[100px] md:h-[calc(100%+100px)]
@@ -41,12 +41,9 @@ export default function Footer({ minimal }: { minimal: boolean }) {
         xl:h-[calc(100%+200px)]
           lg:-top-[150px] lg:h-[calc(100%+150px)]
           md:-top-[100px] md:h-[calc(100%+100px)] 
-          -bottom-0 h-[calc(700px)]
-          
+          -bottom-0 h-[calc(700px)] 
           -z-2"
       >
-
-      
         <SparklesCore
           background="transparent"
           minSize={0.4}

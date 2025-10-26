@@ -210,6 +210,30 @@
     "ourLocation": "موقعنا",
     "address": "شارع عبدالعزيز 123، الرياض ، المملكة العربية السعودية"
   },
+  "settings": {
+    "myInfo": "معلوماتي",
+    "updatePersonalInfo": "قم بتحديث معلوماتك الشخصية",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "birthday": "تاريخ الميلاد",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى",
+    "other": "آخر",
+    "saveChanges": "حفظ التغييرات",
+    "saving": "جاري الحفظ...",
+ 
+    "changePassword": "تغيير كلمة المرور",
+    "updatePasswordSubtitle": "قم بتحديث كلمة المرور للحفاظ على أمان حسابك",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور الجديدة",
+    "passwordRequirements": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتتضمن أحرفًا كبيرة وصغيرة وأرقامًا",
+    "updatePassword": "تحديث كلمة المرور",
+    "updating": "جاري التحديث..."
+  },
   "terms": {
     "termsAndConditions": "الشروط والأحكام",
     "pleaseReadCarefully": "يرجى قراءة هذه الشروط والأحكام بعناية",

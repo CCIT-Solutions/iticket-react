@@ -178,6 +178,30 @@
     "ourLocation": "Our Location",
     "address": "123 Abdulaziz St., Riyadh, Saudi Arabia"
   },
+  "settings": {
+    "myInfo": "My Info",
+    "updatePersonalInfo": "Update your personal information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "birthday": "Birthday",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "changePassword": "Change Password",
+    "updatePasswordSubtitle": "Update your password to keep your account secure",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "passwordRequirements": "Password must be at least 8 characters long and include uppercase, lowercase, and numbers",
+    "updatePassword": "Update Password",
+    "updating": "Updating..."
+   
+  },
   "terms": {
     "termsAndConditions": "Terms and Conditions",
     "pleaseReadCarefully": "Please read these terms and conditions carefully",

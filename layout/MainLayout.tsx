@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import NoInternet from "@/components/custom/NoInternet";
+import NoInternet from "@/components/shared/NoInternet";
 import MinimalLayout from "./MinimalLayout";
 import AppLayout from "./AppLayout";
 import { useLanguageStore } from "@/stores/useLanguageStore";

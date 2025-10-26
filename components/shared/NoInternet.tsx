@@ -1,6 +1,6 @@
 
 import { CiWifiOff } from "react-icons/ci";
-import Translate from "../shared/Translate";
+import Translate from "./Translate";
 import AppLayout from "@/layout/AppLayout";
 
 const NoInternet = () => {
