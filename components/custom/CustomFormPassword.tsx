@@ -17,6 +17,7 @@ interface CustomFormPasswordProps<T extends FieldValues> {
   required?: boolean;
   icon?: React.ReactNode;
   placeholder?: string;
+  inputClassName?: string
 }
 
 export function CustomFormPassword<T extends FieldValues>({
@@ -25,6 +26,7 @@ export function CustomFormPassword<T extends FieldValues>({
   required,
   icon,
   placeholder,
+  inputClassName
 }: CustomFormPasswordProps<T>) {
   const {
     control,
@@ -60,9 +62,10 @@ export function CustomFormPassword<T extends FieldValues>({
               placeholder={placeholder} 
               className={cn(
                 "bg-black/20 border border-neutral-800 focus-visible:border-primary focus-visible:ring-primary/0 py-3 rounded-2xl w-full text-white placeholder:text-neutral-500",
-                "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+                "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive focus:border-primary outline-0",
                 icon && "ps-10",
-                "pe-10"
+                "pe-10", 
+                inputClassName
               )}
               aria-invalid={!!error}
             />
@@ -71,7 +74,7 @@ export function CustomFormPassword<T extends FieldValues>({
             <button
               type="button"
               onClick={togglePassword}
-              className="absolute inset-y-0 end-3 flex items-center text-neutral-400 hover:text-primary transition-colors"
+              className="absolute inset-y-0 end-3 flex items-center text-neutral-400 hover:text-primary transition-colors cursor-pointer"
               tabIndex={-1}
             >
               {showPassword ? (
