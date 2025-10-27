@@ -9,9 +9,9 @@ interface LanguageStore {
 }
 
 function getInitialLang(): Language {
-  if (typeof window === "undefined") return "ar";
+  if (typeof window === "undefined") return "en";
   const stored = localStorage.getItem("lang") as Language;
-  return stored || "ar"; 
+  return stored || "en"; 
 }
 
 function isLanguageRTL(lang: Language): boolean {
