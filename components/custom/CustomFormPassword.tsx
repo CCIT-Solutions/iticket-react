@@ -76,6 +76,7 @@ export function CustomFormPassword<T extends FieldValues>({
               onClick={togglePassword}
               className="absolute inset-y-0 end-3 flex items-center text-neutral-400 hover:text-primary transition-colors cursor-pointer"
               tabIndex={-1}
+              aria-label="visibility toggle"
             >
               {showPassword ? (
                 <AiOutlineEyeInvisible className="w-5 h-5" />
