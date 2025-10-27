@@ -1,19 +1,13 @@
 "use client";
 
-import React, {
-  useEffect,
-  useState,
-  type ReactNode,
-  type ElementType,
-  type CSSProperties,
-} from "react";
-import type {
-  MotionStyle,
-  TargetAndTransition,
-  VariantLabels,
-  Variants,
-  MotionProps,
+import {
+  motion,
+  type MotionStyle,
+  type TargetAndTransition,
+  type VariantLabels,
+  type Variants,
 } from "framer-motion";
+import type { ReactNode } from "react";
 
 type MotionElementTag =
   | "div"
@@ -34,7 +28,7 @@ type MotionElementTag =
   | "h5"
   | "h6";
 
-interface AnimateProps extends Omit<MotionProps, 'animate'> {
+interface AnimateProps {
   children?: ReactNode;
   variants: Variants;
   element?: MotionElementTag;
@@ -42,11 +36,12 @@ interface AnimateProps extends Omit<MotionProps, 'animate'> {
   viewOnce?: boolean;
   style?: MotionStyle;
   animate?: boolean | TargetAndTransition | VariantLabels;
+
   exit?: TargetAndTransition | VariantLabels;
   transition?: TargetAndTransition["transition"];
 }
 
-export default function Animate({
+const Animate = ({
   children,
   variants,
   element = "div",
@@ -56,44 +51,11 @@ export default function Animate({
   animate,
   exit,
   transition,
-  ...props
-}: AnimateProps) {
-  const [MotionComponent, setMotionComponent] = useState<ElementType | null>(null);
+}: AnimateProps) => {
+  const MotionTag = motion[element] as typeof motion.div;
 
-  useEffect(() => {
-    let mounted = true;
-
-    import("framer-motion")
-      .then((mod) => {
-        if (mounted) {
-          const motionElement = mod.motion[element];
-          if (motionElement) {
-            setMotionComponent(() => motionElement);
-          }
-        }
-      })
-      .catch(() => {
-        if (mounted) setMotionComponent(null);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [element]);
-
-  // Render plain HTML element while motion is loading
-  if (!MotionComponent) {
-    const Element = element;
-    return (
-      <Element className={className} style={style as CSSProperties}>
-        {children}
-      </Element>
-    );
-  }
-
-  // Render motion component with all animation props
   return (
-    <MotionComponent
+    <MotionTag
       initial="hidden"
       whileInView="visible"
       exit={exit}
@@ -103,9 +65,10 @@ export default function Animate({
       style={style}
       animate={animate}
       transition={transition}
-      {...props}
     >
       {children}
-    </MotionComponent>
+    </MotionTag>
   );
-}
+};
+
+export default Animate;
