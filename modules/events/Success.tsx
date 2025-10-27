@@ -40,7 +40,7 @@ export default function TicketSuccess() {
           className="flex flex-col items-center mb-16"
         >
           <div className="size-20 bg-[#22C55E] rounded-full flex items-center justify-center mb-6 relative">
-            <Image src="/media/icons/success.png" alt={"Success Icon"} fill />
+            <Image src="/media/icons/success.png" alt={"Success Icon"} fill priority />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold">
             Your Booking Complete
@@ -86,6 +86,7 @@ export default function TicketSuccess() {
                     alt="Success Ticket BG"
                     fill
                     className="object-fill rounded-3xl"
+                    priority
                   />
                 </div>
 
