@@ -2,7 +2,6 @@
 
 import React, {
   useEffect,
-  useMemo,
   useState,
   type ReactNode,
   type ElementType,
@@ -34,7 +33,7 @@ type MotionElementTag =
   | "h5"
   | "h6";
 
-interface AnimateProps extends MotionProps {
+interface AnimateProps extends Omit<MotionProps, 'animate'> {
   children?: ReactNode;
   variants: Variants;
   element?: MotionElementTag;
@@ -58,36 +57,42 @@ export default function Animate({
   transition,
   ...props
 }: AnimateProps) {
-  const [motion, setMotion] = useState<Record<string, ElementType> | null>(null);
+  const [MotionComponent, setMotionComponent] = useState<ElementType | null>(null);
 
   useEffect(() => {
     let mounted = true;
 
     import("framer-motion")
       .then((mod) => {
-        if (mounted) setMotion(mod.motion as unknown as Record<string, ElementType>);
+        if (mounted) {
+          const motionElement = mod.motion[element];
+          if (motionElement) {
+            setMotionComponent(() => motionElement);
+          }
+        }
       })
       .catch(() => {
-        if (mounted) setMotion(null);
+        if (mounted) setMotionComponent(null);
       });
 
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [element]);
 
-  // ✅ ensure valid tag always
-  const MotionTag = useMemo<ElementType>(() => {
-    if (!motion) return element;
-    const tag = motion[element];
-    return tag ?? element; // fallback in case of null
-  }, [motion, element]);
+  // Render plain HTML element while motion is loading
+  if (!MotionComponent) {
+    const Element = element;
+    return (
+      <Element className={className} style={style}>
+        {children}
+      </Element>
+    );
+  }
 
-  // ✅ render plain element if motion not yet loaded
-  const ElementTag = MotionTag as ElementType;
-
+  // Render motion component with all animation props
   return (
-    <ElementTag
+    <MotionComponent
       initial="hidden"
       whileInView="visible"
       exit={exit}
@@ -100,6 +105,6 @@ export default function Animate({
       {...props}
     >
       {children}
-    </ElementTag>
+    </MotionComponent>
   );
 }
