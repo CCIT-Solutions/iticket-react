@@ -15,7 +15,7 @@ import { fadeDu2 } from "@/lib/animation";
 import dynamic from "next/dynamic";
 const SparklesCore = dynamic(
   () => import("@/components/ui/sparkles").then((mod) => mod.SparklesCore),
-  { ssr: true }
+  { ssr: false }
 );
 export default function Footer({ minimal }: { minimal?: boolean }) {
   const { t } = useLang();
