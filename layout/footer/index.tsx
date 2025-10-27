@@ -13,18 +13,23 @@ import { useLang } from "@/hooks/useLang";
 import Animate from "@/components/shared/Animate";
 import { fadeDu2 } from "@/lib/animation";
 import dynamic from "next/dynamic";
+import { useInView } from "react-intersection-observer";
+
 const SparklesCore = dynamic(
   () => import("@/components/ui/sparkles").then((mod) => mod.SparklesCore),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
+
 export default function Footer({ minimal }: { minimal?: boolean }) {
   const { t } = useLang();
+  const { ref, inView } = useInView({ triggerOnce: true, rootMargin: "200px" });
+
   return (
-    <footer className="relative w-full text-neutral-300">
+    <footer ref={ref} className="relative w-full text-neutral-300">
       {/* Background Image */}
       {!minimal && (
         <div
-          className="absolute start-0 -z-2  w-full overflow-hidden
+          className="absolute start-0 -z-2 w-full overflow-hidden
           xl:-top-[200px] xl:h-[calc(100%+200px)]
           lg:-top-[150px] lg:h-[calc(100%+150px)]
           md:-top-[100px] md:h-[calc(100%+100px)]
@@ -34,29 +39,34 @@ export default function Footer({ minimal }: { minimal?: boolean }) {
             src="/media/images/footer-bg.png"
             alt="Footer background"
             fill
-             fetchPriority="high"
+            fetchPriority="high"
             className="opacity-20 object-cover object-top"
             priority
           />
         </div>
       )}
-      <div
-        className="w-full absolute left-0  xl:-top-[200px] 
-        xl:h-[calc(100%+200px)]
-          lg:-top-[150px] lg:h-[calc(100%+150px)]
-          md:-top-[100px] md:h-[calc(100%+100px)] 
-          -bottom-0 h-[calc(700px)] 
-          -z-2"
-      >
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={10}
-          className="w-full h-full"
-          particleColor="#8ef25150"
-        />
-      </div>
+
+      {/* Sparkles effect (lazy-loaded when in view) */}
+      {inView && (
+        <div
+          className="w-full absolute left-0 xl:-top-[200px] 
+            xl:h-[calc(100%+200px)]
+            lg:-top-[150px] lg:h-[calc(100%+150px)]
+            md:-top-[100px] md:h-[calc(100%+100px)] 
+            -bottom-0 h-[calc(700px)] 
+            -z-2"
+        >
+          <SparklesCore
+            background="transparent"
+            minSize={0.4}
+            maxSize={1}
+            particleDensity={10}
+            className="w-full h-full"
+            particleColor="#8ef25150"
+          />
+        </div>
+      )}
+
       <Animate element="footer" variants={fadeDu2} viewOnce>
         <Container>
           {!minimal && (
@@ -118,15 +128,14 @@ export default function Footer({ minimal }: { minimal?: boolean }) {
                 </form>
 
                 <div className="flex items-center gap-4 pt-5">
-                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                    <FaFacebookF className="w-4 h-4" />
-                  </div>
-                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                    <FaXTwitter className="w-4 h-4" />
-                  </div>
-                  <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer">
-                    <FaInstagram className="w-4 h-4" />
-                  </div>
+                  {[FaFacebookF, FaXTwitter, FaInstagram].map((Icon, i) => (
+                    <div
+                      key={i}
+                      className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors cursor-pointer"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
