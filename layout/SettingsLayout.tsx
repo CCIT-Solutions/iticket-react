@@ -48,7 +48,7 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
   const currentPage = getCurrentPage();
 
   return (
-    <div className="min-h-screen pt-28">
+    <div className=" pt-28">
       <Container>
         <div className="py-6">
           <MainBreadcrumb
