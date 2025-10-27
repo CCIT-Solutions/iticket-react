@@ -24,14 +24,14 @@ type MotionElementTag =
 
 interface AnimateProps {
   children?: ReactNode;
-  variants: any;
+  variants: unknown;
   element?: MotionElementTag;
   className?: string;
   viewOnce?: boolean;
   style?: React.CSSProperties;
-  animate?: any;
-  exit?: any;
-  transition?: any;
+  animate?: unknown;
+  exit?: unknown;
+  transition?: unknown;
 }
 
 export default function Animate({
@@ -45,7 +45,7 @@ export default function Animate({
   exit,
   transition,
 }: AnimateProps) {
-  const [motion, setMotion] = useState<any>(null);
+  const [motion, setMotion] = useState<unknown>(null);
 
   useEffect(() => {
     motionPromise.then(setMotion);
