@@ -1,5 +1,7 @@
-import EventSlider from "./EventSlider";
-import QuickFilters from "./QuickFilters";
+import dynamic from "next/dynamic";;
+const EventSlider = dynamic(() => import("./EventSlider"), { ssr: false });
+const QuickFilters = dynamic(() => import("./QuickFilters"), { ssr: false });
+
 
 export default function Hero() {
   return (

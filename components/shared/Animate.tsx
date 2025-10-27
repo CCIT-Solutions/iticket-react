@@ -7,7 +7,12 @@ import {
   type VariantLabels,
   type Variants,
 } from "framer-motion";
+import dynamic from "next/dynamic";
 import type { ReactNode } from "react";
+const MotionDiv = dynamic(
+  () => import('framer-motion').then(mod => mod.motion.div),
+  { ssr: false }
+);
 
 type MotionElementTag =
   | "div"

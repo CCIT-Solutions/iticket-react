@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("./hero"));
-const CTA = dynamic(() => import("./CTA"));
-const Events = dynamic(() => import("./Events"));
+const Hero = dynamic(() => import("./hero"), { ssr: false });
+const CTA = dynamic(() => import("./CTA"), { ssr: false });
+const Events = dynamic(() => import("./Events"), { ssr: false });
 
 function Home() {
   return (
