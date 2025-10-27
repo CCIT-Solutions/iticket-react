@@ -1,7 +1,6 @@
-"use client"
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("./hero"), { ssr: false });
+const Hero = dynamic(() => import("./hero"));
 const CTA = dynamic(() => import("./CTA"));
 const Events = dynamic(() => import("./Events"));
 
