@@ -8,10 +8,11 @@ import Animate from "@/components/shared/Animate";
 import { fade, fadeDu1 } from "@/lib/animation";
 import Translate from "@/components/shared/Translate";
 import { useLang } from "@/hooks/useLang";
+import { cn } from "@/lib/utils";
 
 export default function TicketSuccess() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { t } = useLang();
+  const { t, isRTL } = useLang();
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? 0 : prev - 1));
@@ -61,13 +62,13 @@ export default function TicketSuccess() {
                 onClick={handlePrevious}
                 className="w-9 h-9 bg-neutral-900 hover:bg-neutral-800 rounded-full flex items-center justify-center transition-colors cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className= {cn("w-5 h-5", isRTL ? "rotate-y-180" : "")} />
               </button>
               <button
                 onClick={handleNext}
                 className="w-9 h-9 bg-primary/80 hover:bg-primary text-black rounded-full flex items-center justify-center transition-colors cursor-pointer"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className= {cn("w-5 h-5", isRTL ? "rotate-y-180" : "")} />
               </button>
             </div>
           </Animate>
