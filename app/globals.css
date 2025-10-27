@@ -108,16 +108,18 @@ input:-webkit-autofill {
   display: flex;
   justify-content: center;
 }
+
 .event-swiper .swiper-pagination-bullet.custom-bullet {
   width: 8px;
   height: 8px;
   border-radius: 100px;
-  background-color: #ffffff;
+  background-color: #fff;
   opacity: 1;
   transition: all 0.3s ease;
-  margin: 0 3px!important;
+  margin: 0 3px !important;
 }
+
 .event-swiper .swiper-pagination-bullet.custom-bullet-active {
   width: 24px;
-  background-color: var(--primary); 
+  background-color: var(--primary);
 }

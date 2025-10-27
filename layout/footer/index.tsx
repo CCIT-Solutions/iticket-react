@@ -34,6 +34,7 @@ export default function Footer({ minimal }: { minimal?: boolean }) {
             src="/media/images/footer-bg.png"
             alt="Footer background"
             fill
+             fetchPriority="high"
             className="opacity-20 object-cover object-top"
             priority
           />

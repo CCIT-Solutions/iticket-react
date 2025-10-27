@@ -18,12 +18,14 @@ const EventSlider = () => {
   const { isRTL, lang } = useLang();
 
   console.log("activeSlide", activeSlide);
-  
 
   return (
     <Animate
-      variants={fadeD1} viewOnce className="my-8 relative">
-      <Container>
+      variants={fadeD1}
+      viewOnce
+      className="my-8 relative overflow-hidden"
+    >
+      <Container className="relative">
         <Swiper
           key={isRTL ? "rtl" : "ltr"}
           modules={[Autoplay, Pagination, A11y, Keyboard]}
@@ -35,6 +37,10 @@ const EventSlider = () => {
             clickable: true,
             bulletClass: "swiper-pagination-bullet custom-bullet",
             bulletActiveClass: "custom-bullet-active",
+          }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
           }}
           onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
           breakpoints={{
@@ -70,7 +76,7 @@ const EventSlider = () => {
                   {/* Bottom pattern */}
                   <div
                     className={cn(
-                      "absolute bottom-[2px] -z-10 w-11 h-50 hidden sm:block",
+                      "absolute bottom-[2px] -z-10 w-[38.922px] h-[200px] hidden sm:block",
                       isRTL ? "right-0" : "left-0"
                     )}
                   >
@@ -86,7 +92,7 @@ const EventSlider = () => {
                   {/* Top pattern */}
                   <div
                     className={cn(
-                      "absolute top-0 -z-10 w-10 h-45",
+                      "absolute top-0 -z-10 w-[40.954px] h-[185px]",
                       isRTL ? "left-0" : "right-0"
                     )}
                   >
@@ -168,7 +174,7 @@ const EventSlider = () => {
 
                       {/* Artist image */}
                       <div className="lg:basis-[20%] h-full flex items-end shrink sm:shrink-0 sm:flex-1 justify-center">
-                        <div className="relative self-end w-[300px] h-[370px]">
+                        <div className="relative self-end w-[288.311px] h-[370px]">
                           <Image
                             src={`/media/images/hero/${event.image}.png`}
                             alt="Hero Event Star"
@@ -183,7 +189,9 @@ const EventSlider = () => {
                       <div
                         className={cn(
                           "flex-col items-end p-8 md:py-16 basis-[40%] hidden lg:flex",
-                          isRTL ? "text-left pr-0 pl-30" : "text-right pr-30 pl-0"
+                          isRTL
+                            ? "text-left pr-0 pl-30"
+                            : "text-right pr-30 pl-0"
                         )}
                       >
                         <div className="uppercase">
@@ -202,7 +210,7 @@ const EventSlider = () => {
                         </div>
                         <div className="mt-8">
                           <div className="px-4 py-2 rounded-2xl bg-white/5">
-                            <div className="relative w-[260px] h-[50px] self-end">
+                            <div className="relative w-[274px] h-[52px] self-end">
                               <Image
                                 src={`/media/images/hero/${event.barcode}.png`}
                                 alt="Hero Event barcode"
@@ -220,43 +228,45 @@ const EventSlider = () => {
             );
           })}
         </Swiper>
+        {/* Decorative side images */}
+        <Animate viewOnce variants={fadeDu3}>
+          <div
+            className={cn(
+              "absolute top-[12.5%] -z-20 w-[564.179px] h-[300px] hidden md:block",
+              isRTL
+                ? "start-[calc(-564.179px+20px)]"
+                : "end-[calc(-564.179px+20px)]"
+            )}
+          >
+            <Image
+              src="/media/images/hero/hero-right.png"
+              alt="Hero Event right"
+              fill
+              priority
+              className={cn(
+                "object-cover",
+                isRTL ? "scale-x-[-1]" : " object-right"
+              )}
+            />
+          </div>
+          <div
+            className={cn(
+              "absolute top-[20%] -z-0 w-[514.925px] h-[250px] hidden md:block",
+              isRTL
+                ? "end-[calc(-514.925px+20px)]"
+                : "start-[calc(-514.925px+20px)]"
+            )}
+          >
+            <Image
+              src="/media/images/hero/hero-left.png"
+              alt="Hero Event left"
+              fill
+              priority
+              className={cn("object-cover", isRTL ? "scale-x-[-1]" : "")}
+            />
+          </div>
+        </Animate>
       </Container>
-
-      {/* Decorative side images */}
-      <Animate
-      viewOnce
-      variants={fadeDu3}>
-
-      
-      <div
-        className={cn(
-          "absolute top-[12.5%] -z-10 w-[300px] h-[75%] hidden md:block",
-          isRTL ? "start-0" : "end-0"
-        )}
-      >
-        <Image
-          src="/media/images/hero/hero-right.png"
-          alt="Hero Event right"
-          fill
-          priority
-          className={cn("object-cover", isRTL ? "scale-x-[-1]" : "")}
-        />
-      </div>
-      <div
-        className={cn(
-          "absolute top-[20%] -z-10 w-[300px] h-[60%] hidden md:block",
-          isRTL ? "end-0" : "start-0"
-        )}
-      >
-        <Image
-          src="/media/images/hero/hero-left.png"
-          alt="Hero Event left"
-          fill
-          priority
-          className={cn("object-cover", isRTL ? "scale-x-[-1]" : "")}
-        />
-      </div>
-      </Animate>
     </Animate>
   );
 };
