@@ -1,6 +1,7 @@
+"use client"
 import dynamic from "next/dynamic";;
 const EventSlider = dynamic(() => import("./EventSlider"), { ssr: false });
-const QuickFilters = dynamic(() => import("./QuickFilters"), { ssr: false });
+const QuickFilters = dynamic(() => import("./QuickFilters"));
 
 
 export default function Hero() {
