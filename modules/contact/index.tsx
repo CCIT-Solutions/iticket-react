@@ -98,7 +98,7 @@ const ContactPage: React.FC = () => {
                   key={i}
                   href={item.href}
                   target="_blank"
-                  className="relative group flex items-center justify-between gap-4 p-4 rounded-2xl border border-neutral-900 bg-neutral-950/60 hover:bg-neutral-950/70 transition-all duration-300"
+                  className="relative group flex items-center justify-between gap-4 p-4 rounded-2xl border border-neutral-900 bg-neutral-950/30 hover:bg-neutral-950/70 transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10">
@@ -141,13 +141,13 @@ const ContactPage: React.FC = () => {
             <FormProvider {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6 p-8 rounded-3xl border border-neutral-900 bg-neutral-950/60 hover:bg-neutral-950/70 shadow-lg backdrop-blur-[3px]"
+                className="space-y-6 p-8 rounded-3xl border border-neutral-900 bg-neutral-950/10 hover:bg-neutral-950/70 shadow-lg"
               >
                 {/* Name */}
                 <CustomField name="name" label={t("contact.name")} required>
                   {(field) => (
                     <Input
-                      className="px-4 py-6 text-sm bg-neutral-900/50 border border-neutral-800/60 rounded-xl text-neutral-100 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
+                      className="px-4 py-6 text-sm bg-neutral-900/10 border border-neutral-800/60 rounded-xl text-neutral-100 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
                       placeholder={t("contact.namePlaceholder")}
                       {...field}
                     />
@@ -160,7 +160,7 @@ const ContactPage: React.FC = () => {
                     <div className="relative p-0">
                       <Mail className="absolute start-3 top-3.5 w-5 h-5 text-neutral-500" />
                       <Input
-                        className="px-4 py-6 ps-10 text-sm bg-neutral-900/50 border border-neutral-800/60 rounded-xl text-neutral-100 placeholder:text-neutral-500 focus:ring-0 focus:ring-primary/50 focus:border-primary/50 transition-all"
+                        className="px-4 py-6 ps-10 text-sm bg-neutral-900/10 border border-neutral-800/60 rounded-xl text-neutral-100 placeholder:text-neutral-500 focus:ring-0 focus:ring-primary/50 focus:border-primary/50 transition-all outline-transparent ring-transparent"
                         type="email"
                         placeholder={t("contact.emailPlaceholder")}
                         {...field}
@@ -179,7 +179,7 @@ const ContactPage: React.FC = () => {
                     <Textarea
                       rows={6}
                       placeholder={t("contact.messagePlaceholder")}
-                      className="resize-none text-sm min-h-32 bg-neutral-900/50 border border-neutral-800/60 rounded-xl text-neutral-100 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
+                      className="resize-none text-sm min-h-32 bg-neutral-900/10 border border-neutral-800/60 rounded-xl text-neutral-100 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
                       {...field}
                     />
                   )}

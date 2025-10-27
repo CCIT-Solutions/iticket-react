@@ -65,7 +65,7 @@ export function CustomField<T extends FieldValues>({
           return (
             <div className="relative">
               {icon && (
-                <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-muted-foreground">
+                <div className="absolute inset-y-0 start-3 flex items-center pointer-events-none text-muted-foreground">
                   {icon}
                 </div>
               )}

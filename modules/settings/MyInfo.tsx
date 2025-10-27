@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,21 +22,22 @@ import Email from "@/components/icons/Email";
 import Phone from "@/components/icons/Phone";
 import { Label } from "@/components/ui/label";
 
-// Schema Validation
-const MyInfoSchema = z.object({
-  firstName: z.string().min(2, "First name is too short"),
-  lastName: z.string().min(2, "Last name is too short"),
-  email: z.string().email("Invalid email"),
-  phone: z.string().min(8, "Invalid phone number"),
-  birthdayDay: z.string().optional(),
-  birthdayMonth: z.string().optional(),
-  birthdayYear: z.string().optional(),
-});
-
-type MyInfoType = z.infer<typeof MyInfoSchema>;
-
+// Component
 function MyInfo() {
-  const { t } = useLang();
+  const { t, isRTL } = useLang();
+
+  // Schema Validation (with translated messages)
+  const MyInfoSchema = z.object({
+    firstName: z.string().min(2, t("settings.firstNameShort")),
+    lastName: z.string().min(2, t("settings.lastNameShort")),
+    email: z.string().email(t("settings.invalidEmail")),
+    phone: z.string().min(8, t("settings.invalidPhone")),
+    birthdayDay: z.string().optional(),
+    birthdayMonth: z.string().optional(),
+    birthdayYear: z.string().optional(),
+  });
+
+  type MyInfoType = z.infer<typeof MyInfoSchema>;
 
   // Initialize form
   const form = useForm<MyInfoType>({
@@ -73,13 +73,13 @@ function MyInfo() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <CustomField
               name="firstName"
-              label="First Name"
+              label={t("settings.firstName")}
               icon={<User className="text-neutral-400" />}
             >
               {(field) => (
                 <Input
                   {...field}
-                  placeholder="First name"
+                  placeholder={t("settings.firstNamePlaceholder")}
                   className="py-7 bg-neutral-900/80 border border-neutral-800"
                 />
               )}
@@ -87,53 +87,54 @@ function MyInfo() {
 
             <CustomField
               name="lastName"
-              label="Last Name"
+              label={t("settings.lastName")}
               icon={<User className="text-neutral-400" />}
             >
               {(field) => (
                 <Input
                   {...field}
-                  placeholder="Last name"
+                  placeholder={t("settings.lastNamePlaceholder")}
                   className="py-7 bg-neutral-900/80 border border-neutral-800"
                 />
               )}
             </CustomField>
           </div>
+
+          {/* Email & Phone */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Email */}
             <CustomField
               name="email"
-              label="Email"
+              label={t("settings.email")}
               icon={<Email className="text-neutral-400" />}
             >
               {(field) => (
                 <Input
                   type="email"
                   {...field}
-                  placeholder="Email"
+                  placeholder={t("settings.emailPlaceholder")}
                   className="py-7 bg-neutral-900/80 border border-neutral-800"
                 />
               )}
             </CustomField>
 
-            {/* Phone */}
             <CustomField
               name="phone"
-              label="Phone Number"
+              label={t("settings.phoneNumber")}
               icon={<Phone className="text-neutral-400" />}
             >
               {(field) => (
                 <Input
-                  type="tel"
+                  type="text"
                   {...field}
-                  placeholder="+966..."
+                  placeholder={t("settings.phonePlaceholder")}
                   className="py-7 bg-neutral-900/80 border border-neutral-800"
                 />
               )}
             </CustomField>
           </div>
+
+          {/* Birthday */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Birthday  */}
             <div className="space-y-2">
               <Label className="text-neutral-400 font-medium mb-3">
                 <Translate text="settings.birthday" />
@@ -142,11 +143,15 @@ function MyInfo() {
                 <Select
                   value={form.watch("birthdayDay")}
                   onValueChange={(value) => form.setValue("birthdayDay", value)}
+                        dir={isRTL ? "rtl" : "ltr"}
                 >
-                  <SelectTrigger className="bg-neutral-900/80 border-neutral-800 py-7 px-4 w-full">
-                    <SelectValue placeholder="Day" />
+                  <SelectTrigger
+                    className="bg-neutral-900/80 border-neutral-800 py-7 px-4 w-full"
+              
+                  >
+                    <SelectValue placeholder={t("settings.day")} />
                   </SelectTrigger>
-                  <SelectContent className="bg-neutral-900 border-neutral-800">
+                  <SelectContent className="bg-neutral-900 border-neutral-800 max-h-[350px]">
                     {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
                       <SelectItem
                         key={day}
@@ -163,24 +168,25 @@ function MyInfo() {
                   onValueChange={(value) =>
                     form.setValue("birthdayMonth", value)
                   }
+                   dir={isRTL ? "rtl" : "ltr"}
                 >
                   <SelectTrigger className="bg-neutral-900/80 border-neutral-800 py-7 px-4 w-full">
-                    <SelectValue placeholder="Month" />
+                    <SelectValue placeholder={t("settings.month")} />
                   </SelectTrigger>
-                  <SelectContent className="bg-neutral-900 border-neutral-800">
+                  <SelectContent className="bg-neutral-900 border-neutral-800 max-h-[350px]">
                     {[
-                      "January",
-                      "February",
-                      "March",
-                      "April",
-                      "May",
-                      "June",
-                      "July",
-                      "August",
-                      "September",
-                      "October",
-                      "November",
-                      "December",
+                      t("settings.january"),
+                      t("settings.february"),
+                      t("settings.march"),
+                      t("settings.april"),
+                      t("settings.may"),
+                      t("settings.june"),
+                      t("settings.july"),
+                      t("settings.august"),
+                      t("settings.september"),
+                      t("settings.october"),
+                      t("settings.november"),
+                      t("settings.december"),
                     ].map((month, index) => (
                       <SelectItem
                         key={month}
@@ -197,11 +203,12 @@ function MyInfo() {
                   onValueChange={(value) =>
                     form.setValue("birthdayYear", value)
                   }
+                   dir={isRTL ? "rtl" : "ltr"}
                 >
                   <SelectTrigger className="bg-neutral-900/80 border-neutral-800 py-7 px-4 w-full">
-                    <SelectValue placeholder="Year" />
+                    <SelectValue placeholder={t("settings.year")} />
                   </SelectTrigger>
-                  <SelectContent className="bg-neutral-900 border-neutral-800">
+                  <SelectContent className="bg-neutral-900 border-neutral-800 max-h-[350px]">
                     {Array.from(
                       { length: 100 },
                       (_, i) => new Date().getFullYear() - i

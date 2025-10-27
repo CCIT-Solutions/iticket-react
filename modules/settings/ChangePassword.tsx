@@ -23,10 +23,6 @@ const ChangePasswordSchema = z.object({
     .regex(/[a-z]/, "Must contain at least one lowercase letter")
     .regex(/[0-9]/, "Must contain at least one number"),
 });
-// .refine((data) => data.newPassword === data.confirmPassword, {
-//   message: "Passwords do not match",
-//   path: ["confirmPassword"],
-// });
 
 type ChangePasswordType = z.infer<typeof ChangePasswordSchema>;
 
@@ -64,24 +60,20 @@ function ChangePassword() {
               icon={<Lock />}
               name="currentPassword"
               label={t("settings.currentPassword")}
-              placeholder={t("settings.currentPassword")}
+              placeholder={t("settings.currentPasswordPlaceholder")}
               inputClassName="py-4 bg-neutral-900/80 border border-neutral-800"
             />
 
             {/* New Password */}
-            <div>
-              <CustomFormPassword
-                icon={<Lock />}
-                name="newPassword"
-                label={t("settings.newPassword")}
-                placeholder={t("settings.newPassword")}
-                inputClassName="py-4 bg-neutral-900/80 border border-neutral-800"
-              />
-              {/* <p className="text-xs text-neutral-500 mt-2">
-                  <Translate text="settings.passwordRequirements" />
-                </p> */}
-            </div>
+            <CustomFormPassword
+              icon={<Lock />}
+              name="newPassword"
+              label={t("settings.newPassword")}
+              placeholder={t("settings.newPasswordPlaceholder")}
+              inputClassName="py-4 bg-neutral-900/80 border border-neutral-800"
+            />
           </div>
+
           {/* Submit */}
           <div className="pt-4">
             <Button

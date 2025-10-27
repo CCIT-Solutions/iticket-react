@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Container from "@/components/shared/Container";
 import MainBreadcrumb from "@/components/shared/MainBreadcrumb";
 import { useLang } from "@/hooks/useLang";
@@ -11,28 +11,29 @@ import Ticket from "@/components/icons/Ticket";
 import User from "@/components/icons/User";
 import Security from "@/components/icons/Security";
 import Logout from "@/components/icons/Logout";
+import Translate from "@/components/shared/Translate";
+import { cn } from "@/lib/utils";
 
 export default function SettingsLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
-  const { t } = useLang();
+  const { t, isRTL } = useLang();
 
   const menuItems = [
     {
       id: "my-tickets",
-      label: "My Tickets",
+      labelKey: "settings.myTickets",
       icon: <Ticket />,
       path: "/my-tickets",
     },
     {
       id: "my-info",
-      label: "My Info",
+      labelKey: "settings.myInfo",
       icon: <User />,
       path: "/my-info",
     },
     {
       id: "change-password",
-      label: "Change Password",
+      labelKey: "settings.changePassword",
       icon: <Security />,
       path: "/change-password",
     },
@@ -53,10 +54,10 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
           <MainBreadcrumb
             page={
               currentPage === "my-info"
-                ? "My Info"
+                ? t("settings.myInfo")
                 : currentPage === "change-password"
-                ? "Change Password"
-                : "My Tickets"
+                ? t("settings.changePassword")
+                : t("settings.myTickets")
             }
           />
         </div>
@@ -64,14 +65,15 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 pb-10 pt-3">
           {/* Sidebar */}
           <Animate variants={fade}>
-            <div className=" border border-neutral-800 rounded-2xl">
+            <div className="border border-neutral-800 rounded-2xl">
               {/* User Info */}
               <div className="flex items-center gap-3 border-b border-neutral-800 p-5">
                 <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center font-bold text-black text-xs">
-                  MA
+                  
+                  {isRTL ? "م ع" : "MA"}
                 </div>
                 <div>
-                  <div>Mohamed Ali</div>
+                  <div>{isRTL ? "محمد علي" : "Mohamed Ali"}</div>
                 </div>
               </div>
 
@@ -81,29 +83,30 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
                   const Icon = item.icon;
                   const isActive = currentPage === item.id;
 
-                  console.log(currentPage, item.id);
-                  console.log("isActive", isActive);
-
                   return (
                     <Link
                       href={`${item.path}`}
                       key={item.id}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor ${
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${
                         isActive
                           ? "bg-neutral-950 text-white"
                           : "text-neutral-400 hover:text-white hover:bg-neutral-950/50"
                       }`}
                     >
                       {Icon}
-                      <span>{item.label}</span>
+                      <span>
+                        <Translate text={item.labelKey} />
+                      </span>
                     </Link>
                   );
                 })}
 
                 {/* Logout */}
                 <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:text-red-400 hover:bg-neutral-950/50 transition-all mt-4 cursor-pointer">
-                  <Logout className="w-5 h-5" />
-                  <span className="font-medium">Logout</span>
+                  <Logout className={cn("w-5 h-5", isRTL ? "rotate-y-180" : "")} />
+                  <span className="font-medium">
+                    <Translate text="settings.logout" />
+                  </span>
                 </button>
               </nav>
             </div>
@@ -112,10 +115,9 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
           {/* Main Content */}
           <Animate variants={fadeDu1}>
             <div className="border border-neutral-800 rounded-2xl px-6 py-8">
-
-            {children}
+              {children}
             </div>
-            </Animate>
+          </Animate>
         </div>
       </Container>
     </div>
