@@ -1,7 +1,19 @@
 "use client";
-import { type ReactNode, useEffect, useMemo, useState } from "react";
 
-const motionPromise = import("framer-motion").then((mod) => mod.motion);
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+  type ElementType,
+} from "react";
+import type {
+  MotionStyle,
+  TargetAndTransition,
+  VariantLabels,
+  Variants,
+  MotionProps,
+} from "framer-motion";
 
 type MotionElementTag =
   | "div"
@@ -22,18 +34,29 @@ type MotionElementTag =
   | "h5"
   | "h6";
 
-interface AnimateProps {
+// ✅ explicitly type what `motionPromise` resolves to
+const motionPromise: Promise<Record<string, ElementType>> = import(
+  "framer-motion"
+).then((mod) => mod.motion as unknown as Record<string, ElementType>);
+
+interface AnimateProps extends MotionProps {
   children?: ReactNode;
-  variants: unknown;
+  variants: Variants;
   element?: MotionElementTag;
   className?: string;
   viewOnce?: boolean;
-  style?: React.CSSProperties;
-  animate?: unknown;
-  exit?: unknown;
-  transition?: unknown;
+  style?: MotionStyle;
+  animate?: boolean | TargetAndTransition | VariantLabels;
+  exit?: TargetAndTransition | VariantLabels;
+  transition?: TargetAndTransition["transition"];
 }
 
+/**
+ * Animate wrapper that lazy-loads Framer Motion only when needed.
+ * ✅ Fully typed
+ * ✅ SSR safe
+ * ✅ Zero hydration mismatch risk
+ */
 export default function Animate({
   children,
   variants,
@@ -44,16 +67,21 @@ export default function Animate({
   animate,
   exit,
   transition,
+  ...props
 }: AnimateProps) {
-  const [motion, setMotion] = useState<unknown>(null);
+  const [motion, setMotion] = useState<Record<string, ElementType> | null>(null);
 
   useEffect(() => {
-    motionPromise.then(setMotion);
+    motionPromise.then((m) => setMotion(m));
   }, []);
 
-  const MotionTag = useMemo(() => motion?.[element] || "div", [motion, element]);
+  const MotionTag = useMemo(
+    () => (motion ? (motion[element] as ElementType) : element),
+    [motion, element]
+  );
 
-  if (!motion) return <div className={className}>{children}</div>; // fallback: plain div
+  // fallback to plain element before motion loads
+  if (!motion) return React.createElement(element, { className, style }, children);
 
   return (
     <MotionTag
@@ -66,6 +94,7 @@ export default function Animate({
       style={style}
       animate={animate}
       transition={transition}
+      {...props}
     >
       {children}
     </MotionTag>
