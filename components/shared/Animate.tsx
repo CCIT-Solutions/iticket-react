@@ -34,11 +34,6 @@ type MotionElementTag =
   | "h5"
   | "h6";
 
-// ✅ explicitly type what `motionPromise` resolves to
-const motionPromise: Promise<Record<string, ElementType>> = import(
-  "framer-motion"
-).then((mod) => mod.motion as unknown as Record<string, ElementType>);
-
 interface AnimateProps extends MotionProps {
   children?: ReactNode;
   variants: Variants;
@@ -51,12 +46,6 @@ interface AnimateProps extends MotionProps {
   transition?: TargetAndTransition["transition"];
 }
 
-/**
- * Animate wrapper that lazy-loads Framer Motion only when needed.
- * ✅ Fully typed
- * ✅ SSR safe
- * ✅ Zero hydration mismatch risk
- */
 export default function Animate({
   children,
   variants,
@@ -72,19 +61,33 @@ export default function Animate({
   const [motion, setMotion] = useState<Record<string, ElementType> | null>(null);
 
   useEffect(() => {
-    motionPromise.then((m) => setMotion(m));
+    let mounted = true;
+
+    import("framer-motion")
+      .then((mod) => {
+        if (mounted) setMotion(mod.motion as unknown as Record<string, ElementType>);
+      })
+      .catch(() => {
+        if (mounted) setMotion(null);
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const MotionTag = useMemo(
-    () => (motion ? (motion[element] as ElementType) : element),
-    [motion, element]
-  );
+  // ✅ ensure valid tag always
+  const MotionTag = useMemo<ElementType>(() => {
+    if (!motion) return element;
+    const tag = motion[element];
+    return tag ?? element; // fallback in case of null
+  }, [motion, element]);
 
-  // fallback to plain element before motion loads
-  if (!motion) return React.createElement(element, { className, style }, children);
+  // ✅ render plain element if motion not yet loaded
+  const ElementTag = MotionTag as ElementType;
 
   return (
-    <MotionTag
+    <ElementTag
       initial="hidden"
       whileInView="visible"
       exit={exit}
@@ -97,6 +100,6 @@ export default function Animate({
       {...props}
     >
       {children}
-    </MotionTag>
+    </ElementTag>
   );
 }
