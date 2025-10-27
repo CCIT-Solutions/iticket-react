@@ -77,6 +77,29 @@
       "wrestling": "Wrestling"
     }
   },
+  "selectTicket": {
+    "title": "Select Ticket",
+    "header": "Select Ticket",
+    "maxTickets": "max tickets:",
+    "soldOut": "Sold Out",
+    "eventTitle": "Unstable Live Night with Ghostly Kisses",
+    "eventDate": "Mar 29, 2022 • 10:00 PM",
+    "eventLocation": "Riyadh",
+    "checkout": "Checkout"
+  },
+  "ticketSuccess": {
+    "bookingComplete": "Your Booking Complete",
+    "yourTickets": "YOUR TICKETS",
+    "successIconAlt": "Success Icon",
+    "ticketBackgroundAlt": "Ticket Background",
+    "date": "Date",
+    "time": "Time",
+    "deadline": "Deadline for entry",
+    "seat": "Seat",
+    "qrCodeAlt": "QR Code",
+    "downloadTicket": "Download Ticket",
+    "discoverMore": "Discover More Events"
+  },
   "eventDetails": {
     "home": "Home",
     "onTour": "ON WORLD TOUR",
@@ -179,7 +202,7 @@
     "address": "123 Abdulaziz St., Riyadh, Saudi Arabia"
   },
   "settings": {
-     "myTickets": "My Tickets",
+    "myTickets": "My Tickets",
     "logout": "Logout",
     "myInfo": "My Info",
     "updatePersonalInfo": "Update your personal information",
@@ -237,8 +260,6 @@
     "invalidPhone": "Invalid phone number",
     "currentPasswordPlaceholder": "Enter your current password",
     "newPasswordPlaceholder": "Enter your new password"
-   
-   
   },
   "terms": {
     "termsAndConditions": "Terms and Conditions",

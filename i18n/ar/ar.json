@@ -124,7 +124,29 @@
     "eventsYouMightLike": "فعاليات قد تعجبك",
     "getTicket": "احجز تذكرتك"
   },
-
+  "selectTicket": {
+    "title": "اختيار التذكرة",
+    "header": "اختيار التذكرة",
+    "maxTickets": "الحد الأقصى للتذاكر:",
+    "soldOut": "نفدت الكمية",
+    "eventTitle": "ليلة غير مستقرة مع غوستلي كيسز",
+    "eventDate": "29 مارس 2022 • 10:00 مساءً",
+    "eventLocation": "الرياض",
+    "checkout": "إتمام الشراء"
+  },
+  "ticketSuccess": {
+    "bookingComplete": "تم إتمام الحجز بنجاح",
+    "yourTickets": "تذاكرك",
+    "successIconAlt": "أيقونة النجاح",
+    "ticketBackgroundAlt": "خلفية التذكرة",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "deadline": "آخر موعد للدخول",
+    "seat": "المقعد",
+    "qrCodeAlt": "رمز الاستجابة السريعة",
+    "downloadTicket": "تحميل التذكرة",
+    "discoverMore": "اكتشف المزيد من الفعاليات"
+  },
   "auth": {
     "joinUs": "أفضل مكان للعثور على الفعاليات التي تحبها.",
     "title": "تسجيل حساب",
@@ -164,7 +186,6 @@
       "termsRequired": "يجب الموافقة على الشروط وسياسة الخصوصية للمتابعة"
     }
   },
-
   "checkout": {
     "paymentFailed": "فشل في عملية الدفع، يرجى المحاولة مرة أخرى.",
     "title": "الدفع",
@@ -212,7 +233,7 @@
   },
   "settings": {
     "myInfo": "البيانات الشخصية",
-     "myTickets": "تذاكري",
+    "myTickets": "تذاكري",
     "logout": "تسجيل الخروج",
     "updatePersonalInfo": "قم بتحديث بياناتك الشخصية",
     "firstName": "الاسم الأول",

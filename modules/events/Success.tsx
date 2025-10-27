@@ -1,15 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import { tickets } from "@/data/tickets";
 import Image from "next/image";
 import Container from "@/components/shared/Container";
 import Animate from "@/components/shared/Animate";
 import { fade, fadeDu1 } from "@/lib/animation";
+import Translate from "@/components/shared/Translate";
+import { useLang } from "@/hooks/useLang";
 
 export default function TicketSuccess() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useLang();
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? 0 : prev - 1));
@@ -33,65 +35,63 @@ export default function TicketSuccess() {
   return (
     <div className="min-h-screen py-16">
       <Container>
-        {/* Success Icon and Title */}
-        <Animate
-          variants={fade}
-          viewOnce
-          className="flex flex-col items-center mb-16"
-        >
+        {/* ✅ Success Icon and Title */}
+        <Animate variants={fade} viewOnce className="flex flex-col items-center mb-16">
           <div className="size-20 bg-[#22C55E] rounded-full flex items-center justify-center mb-6 relative">
-            <Image src="/media/icons/success.png" alt={"Success Icon"} fill priority />
+            <Image
+              src="/media/icons/success.png"
+              alt={t("ticketSuccess.successIconAlt")}
+              fill
+              priority
+            />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold">
-            Your Booking Complete
+          <h1 className="text-3xl sm:text-4xl font-bold text-center">
+            <Translate text="ticketSuccess.bookingComplete" />
           </h1>
         </Animate>
 
-        {/* Tickets Section */}
+        {/* ✅ Tickets Section */}
         <div className="mb-12">
-          {/* Header with Navigation */}
           <Animate variants={fade} className="flex items-center justify-between mb-8">
             <h2 className="text-sm font-semibold tracking-wider uppercase text-neutral-300">
-              YOUR TICKETS
+              <Translate text="ticketSuccess.yourTickets" />
             </h2>
             <div className="flex items-center gap-5">
               <button
                 onClick={handlePrevious}
-                // disabled={currentIndex === 0}
-                className="w-9 h-9 bg-neutral-900 hover:bg-neutral-800 rounded-full flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-neutral-900  cursor-pointer"
+                className="w-9 h-9 bg-neutral-900 hover:bg-neutral-800 rounded-full flex items-center justify-center transition-colors cursor-pointer"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
-                // disabled={currentIndex >= tickets.length - 4}
-                className="w-9 h-9 bg-primary/80 hover:bg-primary text-black rounded-full flex items-center justify-center transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:bg-green-500  cursor-pointer"
+                className="w-9 h-9 bg-primary/80 hover:bg-primary text-black rounded-full flex items-center justify-center transition-colors cursor-pointer"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </Animate>
 
-          {/* Tickets Grid */}
+          {/* ✅ Tickets Grid */}
           <Animate variants={fadeDu1} className="flex gap-6 flex-wrap justify-center">
             {getVisibleTickets().map((ticket) => (
               <div
                 key={ticket.id}
                 className="relative overflow-hidden rounded-4xl bg-neutral-900 w-[266px]"
               >
-                {/* Background Image (visible behind content) */}
+                {/* Background Image */}
                 <div className="absolute inset-5 z-0 h-110 w-[calc(100%-40px)] ">
                   <Image
                     src="/media/images/success-ticket-bg.png"
-                    alt="Success Ticket BG"
+                    alt={t("ticketSuccess.ticketBackgroundAlt")}
                     fill
                     className="object-fill rounded-3xl"
                     priority
                   />
                 </div>
 
-                {/* Ticket Content (over image) */}
-                <div className="relative z-10 p-10 pb-9  text-white">
+                {/* Ticket Content */}
+                <div className="relative z-10 p-10 pb-9 text-white">
                   {/* VIP Badge */}
                   <div className="inline-block bg-neutral-800/70 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
                     {ticket.type}
@@ -106,16 +106,16 @@ export default function TicketSuccess() {
                   {/* Event Details */}
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between items-center">
-                      <div className="">
+                      <div>
                         <div className="text-xs text-neutral-400 mb-1">
-                          Date
+                          <Translate text="ticketSuccess.date" />
                         </div>
                         <div className="text-sm font-medium">{ticket.date}</div>
                       </div>
 
                       <div>
                         <div className="text-xs text-neutral-400 mb-1">
-                          Time
+                          <Translate text="ticketSuccess.time" />
                         </div>
                         <div className="text-sm font-medium">{ticket.time}</div>
                       </div>
@@ -124,7 +124,7 @@ export default function TicketSuccess() {
                     <div className="flex justify-between items-center">
                       <div>
                         <div className="text-xs text-neutral-400 mb-1">
-                          Deadline for entry
+                          <Translate text="ticketSuccess.deadline" />
                         </div>
                         <div className="text-sm font-medium">
                           {ticket.deadlineTime}
@@ -133,7 +133,7 @@ export default function TicketSuccess() {
 
                       <div>
                         <div className="text-xs text-neutral-400 mb-1">
-                          Seat
+                          <Translate text="ticketSuccess.seat" />
                         </div>
                         <div className="text-sm font-medium">{ticket.seat}</div>
                       </div>
@@ -145,17 +145,18 @@ export default function TicketSuccess() {
                     <div className="relative size-46">
                       <Image
                         src={ticket.qrCode}
-                        alt="QR Code"
+                        alt={t("ticketSuccess.qrCodeAlt")}
                         fill
-                        className="object-contain "
+                        className="object-contain"
                       />
                     </div>
                   </div>
                 </div>
+
+                {/* Download Button */}
                 <div className="px-5 pb-5">
-                  {/* Download Button */}
                   <button className="w-full bg-white hover:bg-neutral-100 text-black font-semibold py-3 rounded-xl transition-colors cursor-pointer">
-                    Download Ticket
+                    <Translate text="ticketSuccess.downloadTicket" />
                   </button>
                 </div>
               </div>
@@ -163,10 +164,10 @@ export default function TicketSuccess() {
           </Animate>
         </div>
 
-        {/* Discover More Events Button */}
-        <Animate variants={fadeDu1} className="flex justify-center ">
-          <button className="bg-transparent hover:bg-neutral-900 border-2 border-white text-white font-semibold px-12 py-4 rounded-xl transition-colors  cursor-pointer">
-            Discover More Events
+        {/* ✅ Discover More Events Button */}
+        <Animate variants={fadeDu1} className="flex justify-center">
+          <button className="bg-transparent hover:bg-neutral-900 border-2 border-white text-white font-semibold px-12 py-4 rounded-xl transition-colors cursor-pointer">
+            <Translate text="ticketSuccess.discoverMore" />
           </button>
         </Animate>
       </Container>

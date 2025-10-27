@@ -18,6 +18,7 @@ import GetTicketCard from "@/components/events/GetTicketCard";
 import MainBreadcrumb from "@/components/shared/MainBreadcrumb";
 import Animate from "@/components/shared/Animate";
 import { fade, fadeDu1 } from "@/lib/animation";
+import Link from "next/link";
 
 export default function EventDetailsPage() {
   const params = useParams();
@@ -279,7 +280,7 @@ export default function EventDetailsPage() {
 
                 {/* Contact */}
 
-                <div className="mt-8 bg-neutral-800 p-4 rounded-2xl flex justify-between text-neutral-200 cursor-pointer">
+                <Link href={"/contact"} className="mt-8 bg-neutral-800 p-4 rounded-2xl flex justify-between text-neutral-200 cursor-pointer">
                   <div className="flex gap-4">
                     <Message />
                     <span>{t("eventDetails.contactUs")}</span>
@@ -289,7 +290,7 @@ export default function EventDetailsPage() {
                   ) : (
                     <IoIosArrowForward className="size-5 me-2" />
                   )}
-                </div>
+                </Link>
               </Animate>
 
               {/* Sidebar */}
