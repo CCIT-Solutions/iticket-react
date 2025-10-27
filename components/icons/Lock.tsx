@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 function Lock({ className }: { className?: string }) {
   return (
     <svg
