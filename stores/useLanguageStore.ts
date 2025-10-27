@@ -11,7 +11,7 @@ interface LanguageStore {
 function getInitialLang(): Language {
   if (typeof window === "undefined") return "en";
   const stored = localStorage.getItem("lang") as Language;
-  return stored || "en"; 
+  return stored || "en"; // default is English
 }
 
 function isLanguageRTL(lang: Language): boolean {
@@ -21,6 +21,12 @@ function isLanguageRTL(lang: Language): boolean {
 export const useLanguageStore = create<LanguageStore>((set) => {
   const initialLang = getInitialLang();
   const initialRTL = isLanguageRTL(initialLang);
+
+  // ✅ Set default document attributes on load (LTR by default)
+  if (typeof window !== "undefined") {
+    document.documentElement.setAttribute("lang", initialLang);
+    document.documentElement.setAttribute("dir", initialRTL ? "rtl" : "ltr");
+  }
 
   return {
     lang: initialLang,
