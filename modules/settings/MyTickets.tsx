@@ -113,9 +113,8 @@ function MyTickets() {
                       <div className="text-white text-sm">{event.duration}</div>
                     </div>
                   </div>
-                  <div className="mt-3 text-sm">
-                 
-                    <span className="bg-neutral-700 rounded-lg block px-5 py-2">{event.ticketType}</span>
+                  <div className="mt-[1vw] sm:mt-3 text-sm">
+                    <span className="bg-neutral-700 rounded-lg block px-[5vw] sm:px-5 py-[2vw] sm:py-2">{event.ticketType}</span>
                   </div>
                 </div>
               </div>
