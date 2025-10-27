@@ -5,6 +5,7 @@ import React, {
   useState,
   type ReactNode,
   type ElementType,
+  type CSSProperties,
 } from "react";
 import type {
   MotionStyle,
@@ -84,7 +85,7 @@ export default function Animate({
   if (!MotionComponent) {
     const Element = element;
     return (
-      <Element className={className} style={style}>
+      <Element className={className} style={style as CSSProperties}>
         {children}
       </Element>
     );
