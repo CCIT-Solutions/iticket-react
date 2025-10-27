@@ -223,7 +223,7 @@ export default function Checkout() {
                   </label>
                 </div>
 
-                <button className="w-full bg-white hover:bg-neutral-100 text-black font-semibold py-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                <button className="w-full bg-neutral-100 hover:bg-white text-neutral-900 hover:text-black cursor-pointer font-semibold py-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                   <Translate text="checkout.payNow" />
                 </button>
               </Animate>
