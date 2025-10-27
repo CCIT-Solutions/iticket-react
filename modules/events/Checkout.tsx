@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Info, Tag, Clock } from "lucide-react";
+import { Info, Clock } from "lucide-react";
 import Image from "next/image";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";

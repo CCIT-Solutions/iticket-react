@@ -4,17 +4,17 @@ import Link from "next/link";
 
 function Logo({ className }: Readonly<{ className?: string }>) {
   return (
-    <div
-      className={cn("w-28 h-12 relative", className)}
-    >
+    <div className={cn("w-28 h-12 relative", className)}>
       <Link href="/" className="w-full h-full">
         <Image
           src="/logo.png"
           alt="Logo"
           fill
           className="w-full h-full object-contain"
-          priority={true}
+          priority // ✅ enables eager loading
+          fetchPriority="high"
           decoding="async"
+          sizes="100vw"
         />
       </Link>
     </div>

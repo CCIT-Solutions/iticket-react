@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { useLanguageStore } from "@/stores/useLanguageStore";
 import { useEffect, useState } from "react";
 import { useLang } from "@/hooks/useLang";
-import Profile from "../icons/User";
 import Global from "../icons/Global";
 
 function LangSwitcher() {

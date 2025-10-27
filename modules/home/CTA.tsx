@@ -9,7 +9,7 @@ import Translate from "@/components/shared/Translate";
 import { useLang } from "@/hooks/useLang";
 import { cn } from "@/lib/utils";
 import Animate from "@/components/shared/Animate";
-import { fade, fadeD1, fadeDu1 } from "@/lib/animation";
+import { fade, fadeD1 } from "@/lib/animation";
 
 export default function CTASection() {
   const { isRTL } = useLang();

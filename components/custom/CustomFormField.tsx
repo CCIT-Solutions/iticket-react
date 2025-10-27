@@ -16,7 +16,7 @@ interface CustomFieldProps<T extends FieldValues> {
   label: React.ReactNode;
   children: (
     field: ControllerRenderProps<T, Path<T>>
-  ) => React.ReactElement<any>;
+  ) => React.ReactElement<unknown>;
   required?: boolean;
   icon?: React.ReactNode;
 }
@@ -46,7 +46,6 @@ export function CustomField<T extends FieldValues>({
         control={control}
         render={({ field }) => {
           const child = children(field);
-          const childProps = child.props;
 
           if (!React.isValidElement(child)) return child;
 
@@ -57,7 +56,8 @@ export function CustomField<T extends FieldValues>({
                 "bg-black/20 border-neutral-800 focus-visible:border-primary focus-visible:ring-primary/0 focus-visible:ring-[3px] py-6 rounded-2xl",
                 "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
                 icon && "ps-10",
-                childProps.className
+                (child as React.ReactElement<{ className?: string }>).props
+                  .className
               ),
             }
           );

@@ -45,7 +45,7 @@ function MainBreadcrumb({ page, between = [] }: BreadcrumbProps) {
         )}
 
         {between?.length > 0 &&
-          between.map((item, index) => (
+          between.map((item) => (
             <span
               key={item.link}
               className="inline-flex items-center gap-1.5"

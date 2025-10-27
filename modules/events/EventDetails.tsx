@@ -1,8 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
 import Container from "@/components/shared/Container";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -28,7 +25,6 @@ export default function EventDetailsPage() {
   const event = events.find((ev) => ev.id === Number(params?.id));
 
   const hero = heroEvents[0];
-  const artist = hero.artist[lang];
   const eventTitle = hero.event[lang];
   const eventType = hero.type[lang];
   const eventLocation = hero.location[lang];

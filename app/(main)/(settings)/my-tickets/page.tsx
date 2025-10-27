@@ -1,4 +1,3 @@
-import SettingsLayout from "@/layout/SettingsLayout";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 const MyTickets = dynamic(() => import("@/modules/settings/MyTickets"));

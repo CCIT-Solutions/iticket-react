@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Clock, MapPin, Minus, Plus, ChevronRight } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import MainBreadcrumb from "@/components/shared/MainBreadcrumb";
 import Container from "@/components/shared/Container";
 import { useParams } from "next/navigation";
@@ -8,8 +8,6 @@ import { events } from "@/data/events";
 import { useLang } from "@/hooks/useLang";
 import TimePause from "@/components/icons/TimePause";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import Location from "@/components/icons/Location";
 import Animate from "@/components/shared/Animate";
 import { fade, fadeDu1 } from "@/lib/animation";
@@ -18,7 +16,7 @@ import Link from "next/link";
 export default function SelectTicket() {
   const params = useParams();
   const eventId = params.id;
-  const { t, lang, isRTL } = useLang();
+  const { t, lang } = useLang();
 
   const event = events.find((e) => e.id === Number(eventId));
 

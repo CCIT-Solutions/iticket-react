@@ -12,9 +12,12 @@ import Translate from "@/components/shared/Translate";
 import { useLang } from "@/hooks/useLang";
 import Animate from "@/components/shared/Animate";
 import { fadeDu2 } from "@/lib/animation";
-import { SparklesCore } from "@/components/ui/sparkles";
-
-export default function Footer({ minimal }: { minimal: boolean }) {
+import dynamic from "next/dynamic";
+const SparklesCore = dynamic(
+  () => import("@/components/ui/sparkles").then((mod) => mod.SparklesCore),
+  { ssr: true }
+);
+export default function Footer({ minimal }: { minimal?: boolean }) {
   const { t } = useLang();
   return (
     <footer className="relative w-full text-neutral-300">

@@ -1,4 +1,4 @@
-import SettingsLayout from "@/layout/SettingsLayout";
+
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 const MyInfo = dynamic(() => import("@/modules/settings/MyInfo"));

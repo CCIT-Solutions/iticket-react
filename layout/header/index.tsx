@@ -55,7 +55,7 @@ function Header({ className }: { className?: string }) {
               <LangSwitcher />
             </div>
             <Separator orientation="vertical" className="!h-6 bg-neutral-900 mx-2"/>
-            <Link href={"/login"} className="border rounded-full border-neutral-800 p-[10px] aspect-square">
+            <Link href={"/login"} className="border rounded-full border-neutral-800 p-[10px] aspect-square" aria-label="Login">
               <Profile className="size-5 cursor-pointer" />
             </Link>
           </div>

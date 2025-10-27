@@ -31,9 +31,9 @@ function RegisterForm({
   onSuccess?: () => void;
   onSwitchToLogin?: () => void;
 }) {
-  const { t, lang, isRTL } = useLang();
+  const { t, isRTL } = useLang();
 
-  const schema = useMemo(() => createTranslatedSchema(t), [t, lang]);
+  const schema = useMemo(() => createTranslatedSchema(t), [t]);
 
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(schema),
@@ -49,11 +49,18 @@ function RegisterForm({
     // const res = await register({ payload: data, acceptLanguage: lang });
     // notify({ res, t });
     // if (res.success) form.reset();
-    onSuccess && onSuccess();
+    console.log("data", data);
+
+    if (onSuccess) {
+      onSuccess();
+    }
   };
 
   return (
-    <Animate variants={fade} className="flex items-center justify-center lg:bg-transparent">
+    <Animate
+      variants={fade}
+      className="flex items-center justify-center lg:bg-transparent"
+    >
       <div className="bg-black/80 p-8 sm:p-10 rounded-2xl shadow-2xl w-full max-w-lg">
         <h2 className="text-white text-2xl font-semibold">
           <Translate text="auth.title" />
@@ -139,7 +146,7 @@ function RegisterForm({
 
             {/* Already have account */}
             <p className="text-neutral-400 text-sm text-center mt-6">
-              <Translate text="auth.haveAccount" /> {" "}
+              <Translate text="auth.haveAccount" />{" "}
               {onSwitchToLogin ? (
                 <button
                   type="button"

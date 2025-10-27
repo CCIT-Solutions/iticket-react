@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
-import { IoCheckmarkSharp } from "react-icons/io5";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { tickets } from "@/data/tickets";
 import Image from "next/image";

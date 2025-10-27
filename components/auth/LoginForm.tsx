@@ -29,9 +29,9 @@ function LoginForm({
   onSuccess?: () => void;
   onSwitchToRegister?: () => void;
 }) {
-  const { t, lang, isRTL } = useLang();
+  const { t, isRTL } = useLang();
 
-  const schema = useMemo(() => createTranslatedSchema(t), [t, lang]);
+  const schema = useMemo(() => createTranslatedSchema(t), [t]);
 
   const form = useForm<LoginFormType>({
     resolver: zodResolver(schema),
@@ -45,11 +45,18 @@ function LoginForm({
     // const res = await login({ payload: data, acceptLanguage: lang });
     // notify({ res, t });
     // if (res.success) form.reset();
-    onSuccess && onSuccess();
+    console.log("data", data);
+
+    if (onSuccess) {
+      onSuccess();
+    }
   };
 
   return (
-    <Animate variants={fade} className="flex items-center justify-center lg:bg-transparent">
+    <Animate
+      variants={fade}
+      className="flex items-center justify-center lg:bg-transparent"
+    >
       <div className="bg-black/80 p-8 sm:p-10 rounded-2xl shadow-2xl w-full max-w-lg">
         <h2 className="text-white text-2xl font-semibold">
           <Translate text="auth.welcomeBack" />

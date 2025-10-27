@@ -11,11 +11,14 @@ import { cn } from "@/lib/utils";
 import Container from "@/components/shared/Container";
 import { useLang } from "@/hooks/useLang";
 import Animate from "@/components/shared/Animate";
-import { fadeD1, fadeDu1, fadeDu3 } from "@/lib/animation";
+import { fadeD1, fadeDu3 } from "@/lib/animation";
 
 const EventSlider = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const { isRTL, lang } = useLang();
+
+  console.log("activeSlide", activeSlide);
+  
 
   return (
     <Animate
@@ -111,9 +114,9 @@ const EventSlider = () => {
                             : "text-left pl-6 sm:pl-16 xl:pl-30 xl:pr-0"
                         )}
                       >
-                        <h3 className="text-primary text-[6vw] sm:text-3xl tracking-wider mb-2">
+                        <p className="text-primary text-[6vw] sm:text-3xl tracking-wider mb-2">
                           {artist}
-                        </h3>
+                        </p>
                         <h1
                           className={cn(
                             "text-white font-black tracking-wide mb-2 max-w-sm",

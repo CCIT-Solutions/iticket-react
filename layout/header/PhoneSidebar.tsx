@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import HeaderLinks from "./HeaderLinks";
+// import HeaderLinks from "./HeaderLinks";
 import Logo from "@/components/shared/Logo";
 import { RxHamburgerMenu } from "react-icons/rx";
 import {
@@ -31,7 +31,7 @@ function PhoneSidebar() {
             <Logo className="w-60 h-24" />
             <DialogTitle />
           </DialogHeader>
-          <HeaderLinks phone={true} toggle={toggle} />
+          {/* <HeaderLinks phone={true} toggle={toggle} /> */}
         </DialogContent>
       </Dialog>
     </div>

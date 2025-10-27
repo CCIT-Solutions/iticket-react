@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import Container from "@/components/shared/Container";
-import MainBreadcrumb from "@/components/shared/MainBreadcrumb";
 import { useLang } from "@/hooks/useLang";
 import Translate from "@/components/shared/Translate";
 import Animate from "@/components/shared/Animate";

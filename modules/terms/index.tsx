@@ -1,7 +1,6 @@
 // "use client";
 import React from "react";
 import Container from "@/components/shared/Container";
-import { useLang } from "@/hooks/useLang";
 // import TermsAndConditionsAr from "./TermsAndConditionsAr";
 // import TermsAndConditionsEn from "./TermsAndConditionsEn";
 import Translate from "@/components/shared/Translate";

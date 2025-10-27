@@ -11,7 +11,7 @@ type TranslateProps = {
 
 export default function Translate({ text, components }: TranslateProps) {
   const { t } = useLang();
-  let translated = t(text);
+  const translated = t(text);
 
   if (typeof translated !== "string") return null;
 
@@ -23,7 +23,7 @@ export default function Translate({ text, components }: TranslateProps) {
   let match: RegExpExecArray | null;
 
   while ((match = elementPattern.exec(translated)) !== null) {
-    const [full, tag, inner] = match;
+    const [full, tag] = match;
     const start = match.index;
 
     // Add text before the tag

@@ -55,7 +55,7 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const ContactPage: React.FC = () => {
-  const { t, lang, isRTL } = useLang();
+  const { t, isRTL } = useLang();
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
     defaultValues: {

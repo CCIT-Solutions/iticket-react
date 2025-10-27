@@ -1,4 +1,3 @@
-import Container from "@/components/shared/Container";
 import EventSlider from "./EventSlider";
 import QuickFilters from "./QuickFilters";
 

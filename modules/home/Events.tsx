@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Translate from "@/components/shared/Translate";
-import { useLang } from "@/hooks/useLang";
 import Animate from "@/components/shared/Animate";
 import { fade } from "@/lib/animation";
 const EventCard = dynamic(() => import("@/components/events/EventCard"));
@@ -16,7 +15,7 @@ const EventCard = dynamic(() => import("@/components/events/EventCard"));
 function Events() {
   const [activeCategory, setActiveCategory] = useState("Music");
   const [visibleCount, setVisibleCount] = useState(9);
-  const { lang } = useLang();
+
 
   // Filter events based on active category
   const filteredEvents =
