@@ -1,13 +1,7 @@
 "use client";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 
-import {
-  motion,
-  type MotionStyle,
-  type TargetAndTransition,
-  type VariantLabels,
-  type Variants,
-} from "framer-motion";
-import type { ReactNode } from "react";
+const motionPromise = import("framer-motion").then((mod) => mod.motion);
 
 type MotionElementTag =
   | "div"
@@ -30,18 +24,17 @@ type MotionElementTag =
 
 interface AnimateProps {
   children?: ReactNode;
-  variants: Variants;
+  variants: any;
   element?: MotionElementTag;
   className?: string;
   viewOnce?: boolean;
-  style?: MotionStyle;
-  animate?: boolean | TargetAndTransition | VariantLabels;
-
-  exit?: TargetAndTransition | VariantLabels;
-  transition?: TargetAndTransition["transition"];
+  style?: React.CSSProperties;
+  animate?: any;
+  exit?: any;
+  transition?: any;
 }
 
-const Animate = ({
+export default function Animate({
   children,
   variants,
   element = "div",
@@ -51,8 +44,16 @@ const Animate = ({
   animate,
   exit,
   transition,
-}: AnimateProps) => {
-  const MotionTag = motion[element] as typeof motion.div;
+}: AnimateProps) {
+  const [motion, setMotion] = useState<any>(null);
+
+  useEffect(() => {
+    motionPromise.then(setMotion);
+  }, []);
+
+  const MotionTag = useMemo(() => motion?.[element] || "div", [motion, element]);
+
+  if (!motion) return <div className={className}>{children}</div>; // fallback: plain div
 
   return (
     <MotionTag
@@ -69,6 +70,4 @@ const Animate = ({
       {children}
     </MotionTag>
   );
-};
-
-export default Animate;
+}
