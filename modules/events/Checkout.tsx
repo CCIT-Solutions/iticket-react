@@ -177,7 +177,7 @@ export default function Checkout() {
                       onCheckedChange={(checked) =>
                         setAgreedToTerms(checked === true)
                       }
-                      className="mt-0.5 border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:text-black data-[state=checked]:border-primary size-6 rounded-sm"
+                      className="mt-0.5 border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:text-black data-[state=checked]:border-primary size-6 rounded-sm cursor-pointer"
                     />
 
                     <span className="text-sm text-neutral-400 leading-relaxed">
