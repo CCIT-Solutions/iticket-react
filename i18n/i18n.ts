@@ -8,8 +8,8 @@ import en from "./en/en.json";
 i18n
   .use(initReactI18next)
   .init({
-    lng: "ar",
-    fallbackLng: "ar",
+    lng: "en",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false,
     },
