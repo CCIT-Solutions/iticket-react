@@ -11,7 +11,11 @@ import { useGetLandingCategories } from "@/services/landingCategories/query";
 
 function QuickFilters() {
   const { lang } = useLang();
-  const { data: landingCategories, isLoading } = useGetLandingCategories(lang);
+  const { data, isLoading } = useGetLandingCategories(lang);
+
+  const landingCategories = data?.data || []
+
+  
 
   if (isLoading) {
     return <Loading />;

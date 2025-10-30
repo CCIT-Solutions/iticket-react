@@ -1,4 +1,4 @@
-import { ActionResponse } from "@/types/ActionResponse";
+import { ApiResponse } from "@/types/ApiResponse";
 import { toast } from "sonner";
 import {
   IoCheckmark,
@@ -36,7 +36,7 @@ export interface NotifyOptions {
 }
 
 export interface NotifyProps {
-  res: ActionResponse;
+  res: ApiResponse;
   options?: Partial<NotifyOptions>;
   t?: TFunction<"translation", undefined>;
 }
@@ -122,9 +122,9 @@ const getThemeClasses = (type: ToastType) => {
   return themeMap[type];
 };
 
-// Main notify function for ActionResponse
+// Main notify function for ApiResponse
 export function notify({ res, options, t }: NotifyProps) {
-  if (!res?.success && !res?.error && !res?.message && !res?.errors) return;
+  if (!res?.success && !res?.errors && !res?.message && !res?.errors) return;
 
   const isSuccess = res.success;
   const type: ToastType = isSuccess ? "success" : "error";
@@ -301,7 +301,7 @@ export const dismissAllToasts = () => toast.dismiss();
 
 // Usage examples:
 /*
-// Basic ActionResponse usage (your original use case)
+// Basic ApiResponse usage (your original use case)
 notify(actionResponse);
 
 // With custom options

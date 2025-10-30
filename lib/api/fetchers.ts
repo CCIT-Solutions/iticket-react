@@ -17,14 +17,14 @@ type FetchDataProps = {
   options?: FetchOptions;
 };
 
-interface fetchJsonDataProps {
+interface FetchJsonDataProps {
   endpoint: FetchDataProps["endpoint"];
   method?: FetchDataProps["method"];
   body?: unknown;
   acceptLanguage?: string;
 }
 
-interface fetchFormDataProps {
+interface FetchFormDataProps {
   endpoint: string;
   formData: FormData;
   acceptLanguage?: string;
@@ -62,67 +62,46 @@ export async function fetchData<T>({
 }
 
 // For regular JSON requests
-export async function fetchJsonData<T>({
+export async function fetchJsonData<T = unknown>({
   endpoint,
   method = "GET",
   body,
   acceptLanguage,
-}: fetchJsonDataProps): Promise<T> {
+}: FetchJsonDataProps): Promise<ApiResponse<T>> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!apiUrl) throw new Error("API URL is not configured");
 
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (acceptLanguage) headers["Accept-Language"] = acceptLanguage;
 
-  if (acceptLanguage) {
-    headers["Accept-Language"] = acceptLanguage;
-  }
-
-  const options: RequestInit = {
+  const response = await fetch(`${apiUrl}/${endpoint}`, {
     method,
     headers,
-  };
+    body: body && method !== "GET" ? JSON.stringify(body) : undefined,
+  });
 
-  if (body && method !== "GET") {
-    options.body = JSON.stringify(body);
-  }
-
-  const response = await fetch(`${apiUrl}/${endpoint}`, options);
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch ${endpoint}: ${response.status} ${response.statusText}`
-    );
-  }
-
-  const apiResponse: ApiResponse<T> = await response.json();
-  return apiResponse.data;
+  const json = await response.json();
+  return json as ApiResponse<T>;
 }
 
-// For FormData requests
-export async function fetchFormData<T>({
+export async function fetchFormData<T = unknown>({
   endpoint,
   formData,
   acceptLanguage,
-}: fetchFormDataProps) {
+}: FetchFormDataProps): Promise<ApiResponse<T>> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!apiUrl) throw new Error("API URL is not configured");
 
-  const options: RequestInit = {
+  const headers: Record<string, string> = {};
+  if (acceptLanguage) headers["Accept-Language"] = acceptLanguage;
+
+  const response = await fetch(`${apiUrl}/${endpoint}`, {
     method: "POST",
+    headers,
     body: formData,
-  };
+  });
 
-  // Add Accept-Language header if provided
-  if (acceptLanguage) {
-    options.headers = {
-      "Accept-Language": acceptLanguage,
-    };
-  }
-
-  const response = await fetch(`${apiUrl}/${endpoint}`, options);
-
-  const apiResponse: ApiResponse<T> = await response.json();
-  return apiResponse;
+  const json = await response.json();
+  return json as ApiResponse<T>;
 }
+

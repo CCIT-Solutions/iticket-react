@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, A11y, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Container from "@/components/shared/Container";
 import { useLang } from "@/hooks/useLang";
@@ -14,10 +13,7 @@ import Animate from "@/components/shared/Animate";
 import { fadeD1, fadeDu3 } from "@/lib/animation";
 
 const EventSlider = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
   const { isRTL, lang } = useLang();
-
-  console.log("activeSlide", activeSlide);
 
   return (
     <Animate
@@ -42,7 +38,7 @@ const EventSlider = () => {
             delay: 5000,
             disableOnInteraction: false,
           }}
-          onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
+          onSlideChange={() => {}}
           breakpoints={{
             640: { slidesPerView: 1, spaceBetween: 12 },
             768: { slidesPerView: 1, spaceBetween: 16 },

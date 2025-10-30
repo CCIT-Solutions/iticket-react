@@ -21,6 +21,10 @@ import { cn } from "@/lib/utils";
 import { CustomFormPassword } from "@/components/custom/CustomFormPassword";
 import Animate from "../shared/Animate";
 import { fade } from "@/lib/animation";
+// import { apiRequest } from "@/lib/api/api";
+import AuthApi from "@/services/auth/api";
+import { apiRequest } from "@/lib/api/api";
+import { toast } from "sonner";
 
 type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 
@@ -31,7 +35,7 @@ function RegisterForm({
   onSuccess?: () => void;
   onSwitchToLogin?: () => void;
 }) {
-  const { t, isRTL } = useLang();
+  const { t, isRTL, lang } = useLang();
 
   const schema = useMemo(() => createTranslatedSchema(t), [t]);
 
@@ -40,20 +44,29 @@ function RegisterForm({
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
+      phone_number: "",
       password: "",
     },
   });
 
   const onSubmit = async (data: RegisterFormType) => {
-    // const res = await register({ payload: data, acceptLanguage: lang });
-    // notify({ res, t });
-    // if (res.success) form.reset();
     console.log("data", data);
 
-    if (onSuccess) {
-      onSuccess();
-    }
+    await apiRequest(AuthApi.register(data, lang), {
+      t,
+      setError: form.setError,
+      setLoading: (loading) => (form.formState.isSubmitting = loading),
+      onSuccess: (res) => {
+        toast.success(res.message);
+        form.reset();
+        onSuccess?.();
+      },
+      onError: (err) => {
+        console.log("err", err);
+        
+        toast.error(t("auth.registerFailed"));
+      },
+    });
   };
 
   return (
@@ -86,7 +99,11 @@ function RegisterForm({
             </CustomField>
 
             {/* Phone */}
-            <CustomField name="phone" label={t("auth.phone")} icon={<Phone />}>
+            <CustomField
+              name="phone_number"
+              label={t("auth.phone")}
+              icon={<Phone />}
+            >
               {(field) => (
                 <Input placeholder={t("auth.phonePlaceholder")} {...field} />
               )}

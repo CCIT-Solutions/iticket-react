@@ -23,19 +23,22 @@ function Events() {
   const [visibleCount, setVisibleCount] = useState(9);
 
   // Fetch from APIs
-  const { data: categories, isLoading: categoriesLoading } =
+  const { data: categoriesRes, isLoading: categoriesLoading } =
     useGetEventCategories(lang);
-  const { data: events, isLoading: eventsLoading } = useGetEvents(lang);
+  const { data: eventsRes, isLoading: eventsLoading } = useGetEvents(lang);
 
-  const filteredEvents = useMemo(() => {
-    if (!events) return [];
-    if (activeCategory === "All") return events;
-    return events.filter((event) =>
-      event.categories?.some(
-        (cat: EventCategory) => cat.name === activeCategory
-      )
-    );
-  }, [events, activeCategory]);
+  const categories = categoriesRes?.data || []
+  const events = eventsRes?.data || []
+
+const filteredEvents = useMemo(() => {
+  const eventList = events || [];
+  if (activeCategory === "All") return eventList;
+  return eventList.filter((event) =>
+    event.categories?.some(
+      (cat: EventCategory) => cat.name === activeCategory
+    )
+  );
+}, [events, activeCategory]);
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + 9);
 

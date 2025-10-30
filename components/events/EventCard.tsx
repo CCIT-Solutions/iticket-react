@@ -1,21 +1,24 @@
+"use client";
+
 import { useLang } from "@/hooks/useLang";
 import Image from "next/image";
 import Link from "next/link";
 import Location from "../icons/Location";
 import Animate from "../shared/Animate";
 import { fade } from "@/lib/animation";
+import type { Event } from "@/types/event";
 
-function EventCard({ event }: { event: any }) {
+function EventCard({ event }: { event: Event }) {
   const { lang } = useLang();
 
-  // Derived fallback-safe fields from API
+  // Fallback-safe derived values
   const image = event.cover || "/media/images/fallback-event.jpg";
   const category = event.categories?.[0]?.name || "General";
   const date = event.start_date
-    ? new Date(event.start_date).toLocaleDateString(lang === "ar" ? "ar-EG" : "en-US", {
-        month: "short",
-        day: "numeric",
-      })
+    ? new Date(event.start_date).toLocaleDateString(
+        lang === "ar" ? "ar-EG" : "en-US",
+        { month: "short", day: "numeric" }
+      )
     : "TBA";
   const time = event.start_time ? event.start_time.slice(0, 5) : "00:00";
   const venue = event.address || "No address provided";
@@ -62,4 +65,5 @@ function EventCard({ event }: { event: any }) {
     </Link>
   );
 }
+
 export default EventCard;

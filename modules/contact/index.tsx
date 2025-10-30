@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { CustomField } from "@/components/custom/CustomFormField";
 import { useLang } from "@/hooks/useLang";
-import { notify } from "@/lib/notify";
+// import { notify } from "@/lib/notify";
 import Container from "@/components/shared/Container";
 import Link from "next/link";
 import {
@@ -67,7 +67,7 @@ const ContactPage: React.FC = () => {
 
   const onSubmit = async (data: ContactForm): Promise<void> => {
     console.log(data);
-    notify({ res: { success: true, message: t("contact.successMessage") }, t });
+    // notify({ res: { success: true, message: t("contact.successMessage") }, t });
     form.reset();
   };
 

@@ -8,7 +8,7 @@ export const RegisterFormSchema = z.object({
     .email("auth.validation.emailValid")
     .min(5, "auth.validation.emailMin"),
 
-  phone: z
+  phone_number: z
     .string()
     .min(10, "auth.validation.phoneNumberMin")
     .regex(/^[\+]?[0-9\-\(\)\s]+$/, "auth.validation.phoneNumberValid"),
@@ -21,9 +21,9 @@ export const RegisterFormSchema = z.object({
       "auth.validation.passwordStrong"
     ),
 
-  termsAccepted: z.literal(true, {
-    message: "auth.validation.termsRequired",
-  }),
+  // termsAccepted: z.literal(true, {
+  //   message: "auth.validation.termsRequired",
+  // }),
 });
 
 export const createTranslatedSchema = (
@@ -46,7 +46,7 @@ export const createTranslatedSchema = (
       )
       .min(5, t("auth.validation.emailMin") || "Email is too short"),
 
-    phone: z
+    phone_number: z
       .string()
       .min(
         10,
@@ -72,11 +72,11 @@ export const createTranslatedSchema = (
           "Password must contain letters and numbers"
       ),
 
-    termsAccepted: z.literal(true, {
-      message:
-        t("auth.validation.termsRequired") ||
-        "You must accept the terms and privacy policy",
-    }),
+    // termsAccepted: z.literal(true, {
+    //   message:
+    //     t("auth.validation.termsRequired") ||
+    //     "You must accept the terms and privacy policy",
+    // }),
   });
 };
 
