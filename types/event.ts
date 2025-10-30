@@ -1,24 +1,15 @@
-export interface EventType {
+import { EventCategory } from "./eventCategory";
+
+export interface Event {
   id: number;
-  image: string;
-  date: {
-    en: string;
-    ar: string;
-  };
-  time: {
-    en: string;
-    ar: string;
-  };
-  category: {
-    en: string;
-    ar: string;
-  };
-  title: {
-    en: string;
-    ar: string;
-  };
-  venue: {
-    en: string;
-    ar: string;
-  };
+  title: string;
+  description?: string;
+  image?: string;
+  starts_at: string;
+  ends_at?: string;
+  location?: string;
+  price?: number | string;
+  categories: EventCategory[];
+  created_at?: string;
+  updated_at?: string;
 }

@@ -1,4 +1,4 @@
-import { fetchFormData } from "../api";
+import { fetchFormData } from "../fetchers";
 
 export interface LoginPayload {
   payload: {
