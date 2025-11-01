@@ -1,6 +1,8 @@
-
+// lib/api/api.ts
+import { ApiResponse } from "@/types/apiResponse";
 import { FieldValues, Path, UseFormSetError } from "react-hook-form";
 import { toast } from "sonner";
+import { notify } from "../notify";
 
 // ------------------ Types ------------------
 export interface ApiValidationErrors {
@@ -13,25 +15,24 @@ export interface ApiErrorResponse {
     data?: {
       message?: string;
       errors?: ApiValidationErrors;
+      exception?: string;
+      file?: string;
+      line?: number;
+      trace?: any[];
     };
   };
   message?: string;
 }
 
-export interface ApiResponse<T = unknown> {
-  success: boolean;
-  message?: string;
-  data?: T;
-}
-
 export interface ApiRequestOptions<
   T = unknown,
+  M = Record<string, unknown>,
   TFieldValues extends FieldValues = FieldValues
 > {
   setError?: UseFormSetError<TFieldValues>;
   setLoading?: (loading: boolean) => void;
   setOpen?: (open: boolean) => void;
-  onSuccess?: (response: ApiResponse<T>) => void;
+  onSuccess?: (response: ApiResponse<T, M>) => void;
   onValidationError?: (
     errors: ApiValidationErrors,
     setError?: UseFormSetError<TFieldValues>,
@@ -39,19 +40,15 @@ export interface ApiRequestOptions<
   ) => void;
   onError?: (err: ApiErrorResponse) => void;
   t?: (key: string) => string;
+  showErrorToast?: boolean;
 }
 
-
-
-
 // ------------------ Helper ------------------
-
 export const setServerErrors = <TFieldValues extends FieldValues>(
   errorResponse: unknown,
   setError: UseFormSetError<TFieldValues>,
   showToast = true
 ): boolean => {
-  // Safely narrow type
   const possibleError = errorResponse as Partial<{
     message: string;
     errors: ApiValidationErrors;
@@ -92,60 +89,116 @@ export const setServerErrors = <TFieldValues extends FieldValues>(
   return false;
 };
 
-
 // ------------------ Main apiRequest ------------------
 export const apiRequest = async <
   T = unknown,
+  M = Record<string, unknown>,
   TFieldValues extends FieldValues = FieldValues
 >(
-  promise: Promise<ApiResponse<T>>,
+  promise: Promise<ApiResponse<T, M>>,
   {
     setError,
     setLoading,
     setOpen,
     onSuccess,
     onValidationError,
+    onError,
     t,
-  }: ApiRequestOptions<T, TFieldValues> = {}
-): Promise<ApiResponse<T>> => {
+    showErrorToast = true,
+  }: ApiRequestOptions<T, M, TFieldValues> = {}
+): Promise<ApiResponse<T, M>> => {
   if (setLoading) setLoading(true);
 
   try {
     const res = await promise;
 
     if (setLoading) setLoading(false);
-    if (onSuccess) onSuccess(res);
-    if (setOpen) setOpen(false);
 
-    // Optionally show success toast
-    if (res.message) toast.success(res.message);
+    console.log("📡 API Response:", res);
 
-    return res;
+    // ✅ Check for successful response with data
+    if (res?.data) {
+      if (onSuccess) {
+        onSuccess(res);
+      }
+
+      setOpen?.(false);
+
+      return res;
+    } else {
+      // Handle responses without data (but still successful)
+      const errorMessage =
+        res?.message || t?.("common.error") || "Something went wrong";
+
+      if (showErrorToast) {
+        toast.error(errorMessage);
+      }
+
+      if (onError) {
+        onError({ message: errorMessage });
+      }
+
+      return {
+        success: false,
+        message: errorMessage,
+      } as ApiResponse<T, M>;
+    }
   } catch (error: unknown) {
-    const err = error as ApiErrorResponse;
     if (setLoading) setLoading(false);
 
-    if (err?.response?.status === 422) {
-      const responseErrors = err.response?.data?.errors || {};
+    const err = error as ApiErrorResponse;
+    const status = err?.response?.status;
+    const data = err?.response?.data;
 
-      if (onValidationError) {
-        onValidationError(responseErrors, setError, err);
-      } else if (setError) {
-        setServerErrors(responseErrors, setError);
-      }
-    } else {
-      console.log(
-        "error?.response?.data?.message",
-        err?.response?.data?.message
-      );
-
-      toast.error(
-        err?.response?.data?.message ||
-          t?.("validation.toastError") ||
-          "Something went wrong"
-      );
+    // ✅ Log errors in development only
+    if (process.env.NODE_ENV === "development") {
+      console.log("❌ API Request Error:", {
+        status,
+        message: data?.message,
+        errors: data?.errors,
+        fullError: err,
+      });
     }
 
-    throw err;
+    // ✅ Handle validation errors (422) - Show field errors via setError
+    if (status === 422) {
+      const validationErrors = data?.errors || {};
+
+      if (onValidationError) {
+        onValidationError(validationErrors, setError, err);
+      } else if (setError) {
+        // ✅ Only notify for server errors (not field validation errors)
+        setServerErrors(validationErrors, setError, false);
+      }
+
+      return {
+        success: false,
+        errors: validationErrors,
+        message: data?.message,
+      } as ApiResponse<T, M>;
+    }
+
+    // ✅ Handle all other errors (500, 404, 401, network, etc.)
+    const errorMessage =
+      data?.message ||
+      err?.message ||
+      t?.("validation.toastError") ||
+      "Something went wrong";
+
+    // ✅ Only show toast for server errors
+    if (showErrorToast) {
+      toast.error(errorMessage);
+    }
+
+    if (onError) {
+      onError(err);
+    }
+
+    // ✅ NEVER throw - always return safe response
+    return {
+      success: false,
+      message: errorMessage,
+      data: undefined,
+    } as ApiResponse<T, M>;
   }
 };

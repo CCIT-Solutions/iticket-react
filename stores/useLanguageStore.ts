@@ -2,7 +2,6 @@ import { Language } from "@/types/shared";
 import { create } from "zustand";
 
 
-
 interface LanguageStore {
   lang: Language;
   isRTL: boolean;
@@ -11,7 +10,7 @@ interface LanguageStore {
 
 function getInitialLang(): Language {
   if (typeof window === "undefined") return "en";
-  const stored = localStorage.getItem("lang") as Language;
+  const stored = localStorage.getItem("locale") as Language;
   return stored || "en"; // default is English
 }
 
@@ -36,7 +35,7 @@ export const useLanguageStore = create<LanguageStore>((set) => {
       const rtl = isLanguageRTL(lang);
 
       if (typeof window !== "undefined") {
-        localStorage.setItem("lang", lang);
+        localStorage.setItem("locale", lang);
         document.documentElement.setAttribute("lang", lang);
         document.documentElement.setAttribute("dir", rtl ? "rtl" : "ltr");
       }

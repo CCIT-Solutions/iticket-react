@@ -1,9 +1,8 @@
 import { memo, ReactNode } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamically import Header and Footer
-const Header = dynamic(() => import("@/layout/header"), { ssr: true });
-const Footer = dynamic(() => import("@/layout/footer"), { ssr: true });
+const Header = dynamic(() => import("@/layout/header"), { ssr: false });
+const Footer = dynamic(() => import("@/layout/footer"), { ssr: false });
 
 function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (

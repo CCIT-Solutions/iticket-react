@@ -1,6 +1,7 @@
-export interface ApiResponse<T = unknown> {
-  success: boolean;
+export interface ApiResponse<T = unknown, M = Record<string, unknown>> {
+  success?: boolean; 
   message?: string;
-  data: T;
+  data?: T;
+  meta?: M;
   errors?: Record<string, string[]>;
 }

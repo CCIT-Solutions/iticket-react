@@ -1,19 +1,7 @@
 "use client";
 
-import React, {
-  useEffect,
-  useState,
-  type ReactNode,
-  type ElementType,
-  type CSSProperties,
-} from "react";
-import type {
-  MotionStyle,
-  TargetAndTransition,
-  VariantLabels,
-  Variants,
-  MotionProps,
-} from "framer-motion";
+import React, { type ReactNode, type ElementType, type CSSProperties } from "react";
+import { motion, type MotionProps, type Variants, type MotionStyle, type TargetAndTransition, type VariantLabels } from "framer-motion";
 
 type MotionElementTag =
   | "div"
@@ -58,40 +46,9 @@ export default function Animate({
   transition,
   ...props
 }: AnimateProps) {
-  const [MotionComponent, setMotionComponent] = useState<ElementType | null>(null);
+  // Dynamically get motion element from framer-motion
+  const MotionComponent = motion[element] as ElementType;
 
-  useEffect(() => {
-    let mounted = true;
-
-    import("framer-motion")
-      .then((mod) => {
-        if (mounted) {
-          const motionElement = mod.motion[element];
-          if (motionElement) {
-            setMotionComponent(() => motionElement);
-          }
-        }
-      })
-      .catch(() => {
-        if (mounted) setMotionComponent(null);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [element]);
-
-  // Render plain HTML element while motion is loading
-  if (!MotionComponent) {
-    const Element = element;
-    return (
-      <Element className={className} style={style as CSSProperties}>
-        {children}
-      </Element>
-    );
-  }
-
-  // Render motion component with all animation props
   return (
     <MotionComponent
       initial="hidden"

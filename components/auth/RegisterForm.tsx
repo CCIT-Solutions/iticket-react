@@ -21,10 +21,12 @@ import { cn } from "@/lib/utils";
 import { CustomFormPassword } from "@/components/custom/CustomFormPassword";
 import Animate from "../shared/Animate";
 import { fade } from "@/lib/animation";
-// import { apiRequest } from "@/lib/api/api";
-import AuthApi from "@/services/auth/api";
 import { apiRequest } from "@/lib/api/api";
 import { toast } from "sonner";
+import AuthApiEndpoints from "@/services/auth/api";
+import { UserData } from "@/types/auth";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/hooks/useUser";
 
 type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 
@@ -38,6 +40,11 @@ function RegisterForm({
   const { t, isRTL, lang } = useLang();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const schema = useMemo(() => createTranslatedSchema(t), [t]);
+  const router = useRouter();
+
+  const { setUser } = useUser();
+
+  
 
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(schema),
@@ -51,20 +58,43 @@ function RegisterForm({
   });
 
   const onSubmit = async (data: RegisterFormType) => {
-    setIsSubmitting(true);
-    try {
-      const res = await apiRequest(AuthApi.register(data), {
-        t,
-        setError: form.setError,
-      });
-      toast.success(res.message);
-      form.reset();
-      onSuccess?.();
-    } catch (err) {
-      console.error(err);
-      toast.error(t("auth.registerFailed"));
-    } finally {
-      setIsSubmitting(false);
+    const response = await apiRequest<
+      UserData,
+      { token: string },
+      RegisterFormType
+    >(AuthApiEndpoints.register(data), {
+      t,
+      setError: form.setError,
+      setLoading: setIsSubmitting,
+      showErrorToast: true,
+      onSuccess: (res) => {
+        console.log("✅ Registration successful:", res);
+
+        const userData = res?.data;
+        const token = res?.meta?.token;
+
+        if (userData && token) {
+          setUser(userData, token);
+
+          const successMessage = res?.message || t("auth.registerSuccess");
+          toast.success(successMessage);
+
+          form.reset();
+
+          if (typeof onSuccess === "function") {
+            onSuccess();
+          } else {
+            router.push("/");
+          }
+        } else {
+          console.error("⚠️ Missing user or token in response:", res);
+          toast.error(t("auth.registerFailed"));
+        }
+      },
+    });
+
+    if (!response.success && !response.data) {
+      console.log("❌ Registration failed:", response.message);
     }
   };
 
@@ -116,31 +146,32 @@ function RegisterForm({
               placeholder={t("auth.passwordPlaceholder")}
             />
 
+            {/* Password Confirmation */}
             <CustomFormPassword
               name="password_confirmation"
-            label={t("auth.passwordConfirm")}
+              label={t("auth.passwordConfirm")}
               icon={<Lock />}
               placeholder={t("auth.passwordConfirmPlaceholder")}
             />
 
-            {/* Submit */}
+            {/* Submit Button */}
             <Button
               type="submit"
-              disabled={form.formState.isSubmitting}
-              className="w-full py-6 text-base font-semibold bg-white text-neutral-800 rounded-2xl mt-4 cursor-pointer"
+              disabled={isSubmitting}
+              className="w-full py-6 text-base font-semibold bg-white text-neutral-800 rounded-2xl mt-4 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {form.formState.isSubmitting ? (
+              {isSubmitting ? (
                 <Translate text="auth.signingUp" />
               ) : (
                 <Translate text="auth.signUp" />
               )}
             </Button>
 
-            {/* OR */}
+            {/* OR Divider */}
             <div className="flex items-center gap-3 mb-3">
               <div
                 className={cn(
-                  "h-px  from-transparent to-neutral-800 flex-1",
+                  "h-px from-transparent to-neutral-800 flex-1",
                   isRTL ? "bg-gradient-to-l" : "bg-gradient-to-r"
                 )}
               />

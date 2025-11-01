@@ -10,9 +10,10 @@ import Link from "next/link";
 import Ticket from "@/components/icons/Ticket";
 import User from "@/components/icons/User";
 import Security from "@/components/icons/Security";
-import Logout from "@/components/icons/Logout";
+
 import Translate from "@/components/shared/Translate";
 import { cn } from "@/lib/utils";
+import LogoutButton from "@/components/auth/LogoutButton";
 
 export default function SettingsLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -102,12 +103,7 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
                 })}
 
                 {/* Logout */}
-                <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:text-red-400 hover:bg-neutral-950/50 transition-all mt-4 cursor-pointer">
-                  <Logout className={cn("w-5 h-5", isRTL ? "rotate-y-180" : "")} />
-                  <span className="font-medium">
-                    <Translate text="settings.logout" />
-                  </span>
-                </button>
+               <LogoutButton/>
               </nav>
             </div>
           </Animate>

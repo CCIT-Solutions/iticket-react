@@ -25,7 +25,11 @@ function LangSwitcher() {
   // Show a placeholder during SSR to prevent hydration mismatch
   if (!isMounted) {
     return (
-      <Button variant="noStyle" className="h-auto border-0 p-0 hover:!bg-transparent" disabled>
+      <Button
+        variant="noStyle"
+        className="h-auto border-0 p-0 hover:!bg-transparent"
+        disabled
+      >
         <div className="rounded uppercase hover:text-primary transition-colors cursor-pointer"></div>
       </Button>
     );
@@ -38,7 +42,7 @@ function LangSwitcher() {
       onClick={toggleLang}
       title={currentLanguageText}
     >
-      <Global className="size-5"/>
+      <Global className="size-5" />
       {/* <div className="rounded uppercase hover:text-primary transition-colors">{currentLanguageText}</div> */}
     </Button>
   );

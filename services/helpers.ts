@@ -29,7 +29,7 @@ class HttpHelpers {
   }
 
   getToken(): string | null {
-    const token = localStorage.getItem("lang");
+    const token = localStorage.getItem("token");
     console.log("token", token);
     
     return token;

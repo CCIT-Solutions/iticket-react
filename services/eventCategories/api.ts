@@ -2,9 +2,10 @@ import HttpHelpers from "@/services/helpers";
 import { AxiosRequestConfig } from "axios";
 
 const EventCategoriesApi = {
-  getAll: async (config?: AxiosRequestConfig) => {
-    const response = await HttpHelpers.unAuthenticatedAxios.get("categories", config);
-    return response.data;
+  getAll: () => {
+    return HttpHelpers.unAuthenticatedAxios
+      .get("categories")
+      .then((response) => response.data);
   },
 };
 

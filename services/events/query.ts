@@ -5,9 +5,7 @@ export const useGetEvents = (language?: string) => {
   return useQuery({
     queryKey: ["events", language],
     queryFn: () =>
-      EventsApi.getAll({
-        params: { lang: language },
-      }),
+      EventsApi.getAll(),
     placeholderData: (prev) => prev,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 30,
