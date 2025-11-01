@@ -1,10 +1,10 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useLang } from "@/hooks/useLang";
 import Logout from "@/components/icons/Logout";
 import { cn } from "@/lib/utils";
-// import { useUser } from "@/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 import { apiRequest } from "@/lib/api/api";
 import AuthApiEndpoints from "@/services/auth/api";
 
@@ -13,9 +13,9 @@ interface LogoutButtonProps {
 }
 
 export default function LogoutButton({ className }: LogoutButtonProps) {
-  // const router = useRouter();
+  const router = useRouter();
   const { t, isRTL } = useLang();
-  // const { logout } = useUser();
+  const { logout } = useUser();
 
   const handleLogout = async () => {
     await apiRequest(AuthApiEndpoints.logout({}), {
@@ -23,9 +23,9 @@ export default function LogoutButton({ className }: LogoutButtonProps) {
       onSuccess: (res) => {
         console.log(res);
         
-        // logout();
+        logout();
         // toast.success(t("settings.loggedOut") || "Logged out successfully");
-        // router.push("/");
+        router.push("/");
       },
     });
   };

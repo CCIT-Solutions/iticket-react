@@ -15,9 +15,9 @@ export const LoginFormSchema = z.object({
       "auth.validation.passwordStrong"
     ),
 
-  termsAccepted: z.literal(true, {
-    message: "auth.validation.termsRequired",
-  }),
+  // termsAccepted: z.literal(true, {
+  //   message: "auth.validation.termsRequired",
+  // }),
 });
 
 export const createTranslatedSchema = (
@@ -44,11 +44,11 @@ export const createTranslatedSchema = (
           "Password must contain letters and numbers"
       ),
 
-    termsAccepted: z.literal(true, {
-      message:
-        t("auth.validation.termsRequired") ||
-        "You must accept the terms and privacy policy",
-    }),
+    // termsAccepted: z.literal(true, {
+    //   message:
+    //     t("auth.validation.termsRequired") ||
+    //     "You must accept the terms and privacy policy",
+    // }),
   });
 };
 

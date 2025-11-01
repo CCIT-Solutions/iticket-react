@@ -27,6 +27,7 @@ import AuthApiEndpoints from "@/services/auth/api";
 import { UserData } from "@/types/auth";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
+import { notify } from "@/lib/notify";
 
 type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 
@@ -42,7 +43,7 @@ function RegisterForm({
   const schema = useMemo(() => createTranslatedSchema(t), [t]);
   const router = useRouter();
 
-  const { setUser } = useUser();
+  const { register } = useUser();
 
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(schema),
@@ -66,16 +67,16 @@ function RegisterForm({
       setLoading: setIsSubmitting,
       showErrorToast: true,
       onSuccess: (res) => {
-        console.log("✅ Registration successful:", res);
+        console.log("Registration successful:", res);
 
         const userData = res?.data;
         const token = res?.meta?.token;
 
         if (userData && token) {
-          setUser(userData, token);
+          register(userData, token);
 
           const successMessage = res?.message || t("auth.registerSuccess");
-          toast.success(successMessage);
+          notify(successMessage, { type: "success" });
 
           form.reset();
 
@@ -86,7 +87,7 @@ function RegisterForm({
           }
         } else {
           console.error("⚠️ Missing user or token in response:", res);
-          toast.error(t("auth.registerFailed"));
+          notify(t("auth.registerFailed"), { type: "error" });
         }
       },
     });

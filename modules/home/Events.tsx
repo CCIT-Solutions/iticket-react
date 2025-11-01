@@ -1,6 +1,4 @@
 "use client";
-
-import dynamic from "next/dynamic";
 import Container from "@/components/shared/Container";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -16,8 +14,6 @@ import Loading from "@/components/shared/Loading";
 import { useLang } from "@/hooks/useLang";
 import { Event } from "@/types/event";
 import EventCard from "@/components/events/EventCard";
-
-
 
 function Events() {
   const { lang } = useLang();

@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,6 +19,12 @@ import { cn } from "@/lib/utils";
 import { CustomFormPassword } from "@/components/custom/CustomFormPassword";
 import { fade } from "@/lib/animation";
 import Animate from "../shared/Animate";
+import { apiRequest } from "@/lib/api/api";
+import AuthApiEndpoints from "@/services/auth/api";
+import { useUser } from "@/hooks/useUser";
+import { notify } from "@/lib/notify";
+import { UserData } from "@/types/auth";
+import { useRouter } from "next/navigation";
 
 type LoginFormType = z.infer<typeof LoginSchema>;
 
@@ -30,8 +36,11 @@ function LoginForm({
   onSwitchToRegister?: () => void;
 }) {
   const { t, isRTL } = useLang();
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const schema = useMemo(() => createTranslatedSchema(t), [t]);
+  const router = useRouter();
+
+  const { login } = useUser();
 
   const form = useForm<LoginFormType>({
     resolver: zodResolver(schema),
@@ -42,13 +51,43 @@ function LoginForm({
   });
 
   const onSubmit = async (data: LoginFormType) => {
-    // const res = await login({ payload: data, acceptLanguage: lang });
-    // notify({ res, t });
-    // if (res.success) form.reset();
-    console.log("data", data);
+    const response = await apiRequest<
+      UserData,
+      { token: string },
+      LoginFormType
+    >(AuthApiEndpoints.login(data), {
+      t,
+      setError: form.setError,
+      setLoading: setIsSubmitting,
+      showErrorToast: true,
+      onSuccess: (res) => {
+        console.log("Registration successful:", res);
 
-    if (onSuccess) {
-      onSuccess();
+        const userData = res?.data;
+        const token = res?.meta?.token;
+
+        if (userData && token) {
+          login(userData, token);
+
+          const successMessage = res?.message || t("auth.registerSuccess");
+          notify(successMessage, { type: "success" });
+
+          form.reset();
+
+          if (typeof onSuccess === "function") {
+            onSuccess();
+          } else {
+            router.push("/");
+          }
+        } else {
+          console.error("⚠️ Missing user or token in response:", res);
+         notify(t("auth.liginFailed"), { type: "error" });
+        }
+      },
+    });
+
+    if (!response.success && !response.data) {
+      console.log("❌ Registration failed:", response.message);
     }
   };
 
@@ -85,13 +124,13 @@ function LoginForm({
             {/* Submit */}
             <Button
               type="submit"
-              disabled={form.formState.isSubmitting}
+              disabled={isSubmitting}
               className="w-full py-6 text-base font-semibold bg-white text-neutral-800 rounded-2xl mt-4 cursor-pointer"
             >
-              {form.formState.isSubmitting ? (
-                <Translate text="auth.signingUp" />
+              {isSubmitting ? (
+                <Translate text="auth.signingIn" />
               ) : (
-                <Translate text="auth.signUp" />
+                <Translate text="auth.signIn" />
               )}
             </Button>
 

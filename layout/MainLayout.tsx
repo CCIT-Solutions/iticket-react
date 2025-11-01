@@ -7,6 +7,7 @@ import { useLanguageStore } from "@/stores/useLanguageStore";
 import i18n from "@/i18n/i18n";
 import Loading from "@/components/shared/Loading";
 import dynamic from "next/dynamic";
+import { AuthInitializer } from "@/components/auth/AuthInitializer";
 
 const LazyLenis = dynamic(
   () => import("lenis/react").then((mod) => mod.ReactLenis),
@@ -69,11 +70,18 @@ function MainLayout({
   }
 
   if (!isOnline) return <NoInternet />;
-  if (minimal) return <MinimalLayout>{children}</MinimalLayout>;
+  if (minimal)
+    return (
+      <AuthInitializer>
+        <MinimalLayout>{children}</MinimalLayout>
+      </AuthInitializer>
+    );
 
   return (
     <LazyLenis root>
-      <AppLayout>{children}</AppLayout>
+      <AuthInitializer>
+        <AppLayout>{children}</AppLayout>
+      </AuthInitializer>
     </LazyLenis>
   );
 }
