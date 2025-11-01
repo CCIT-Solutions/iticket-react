@@ -1,7 +1,13 @@
 "use client";
 
-import React, { type ReactNode, type ElementType } from "react";
-import { motion, type MotionProps, type Variants, type MotionStyle, type TargetAndTransition, type VariantLabels } from "framer-motion";
+import {
+  motion,
+  type MotionStyle,
+  type TargetAndTransition,
+  type VariantLabels,
+  type Variants,
+} from "framer-motion";
+import type { ReactNode } from "react";
 
 type MotionElementTag =
   | "div"
@@ -22,7 +28,7 @@ type MotionElementTag =
   | "h5"
   | "h6";
 
-interface AnimateProps extends Omit<MotionProps, 'animate'> {
+interface AnimateProps {
   children?: ReactNode;
   variants: Variants;
   element?: MotionElementTag;
@@ -30,11 +36,12 @@ interface AnimateProps extends Omit<MotionProps, 'animate'> {
   viewOnce?: boolean;
   style?: MotionStyle;
   animate?: boolean | TargetAndTransition | VariantLabels;
+
   exit?: TargetAndTransition | VariantLabels;
   transition?: TargetAndTransition["transition"];
 }
 
-export default function Animate({
+const Animate = ({
   children,
   variants,
   element = "div",
@@ -44,12 +51,11 @@ export default function Animate({
   animate,
   exit,
   transition,
-  ...props
-}: AnimateProps) {
-  const MotionComponent = motion[element] as ElementType;
+}: AnimateProps) => {
+  const MotionTag = motion[element] as typeof motion.div;
 
   return (
-    <MotionComponent
+    <MotionTag
       initial="hidden"
       whileInView="visible"
       exit={exit}
@@ -59,9 +65,10 @@ export default function Animate({
       style={style}
       animate={animate}
       transition={transition}
-      {...props}
     >
       {children}
-    </MotionComponent>
+    </MotionTag>
   );
-}
+};
+
+export default Animate;
