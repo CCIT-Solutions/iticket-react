@@ -24,7 +24,7 @@ import { fade } from "@/lib/animation";
 import { apiRequest } from "@/lib/api/api";
 import { toast } from "sonner";
 import AuthApiEndpoints from "@/services/auth/api";
-import { UserData } from "@/types/authType";
+import { UserData } from "@/types/auth";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 

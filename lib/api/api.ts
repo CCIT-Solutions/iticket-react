@@ -1,5 +1,5 @@
 // lib/api/api.ts
-import { ApiResponse } from "@/types/apiResponseType";
+import { ApiResponse } from "@/types/apiResponse";
 import { FieldValues, Path, UseFormSetError } from "react-hook-form";
 import { notify } from "../notify";
 

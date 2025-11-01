@@ -1,4 +1,4 @@
-import { ApiResponse } from "./apiResponseType";
+import { ApiResponse } from "./apiResponse";
 
 export interface RegisterPayload {
   name: string;
