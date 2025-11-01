@@ -1,6 +1,7 @@
+import { Language } from "@/types/shared";
 import { create } from "zustand";
 
-type Language = "en" | "ar";
+
 
 interface LanguageStore {
   lang: Language;

@@ -51,7 +51,7 @@
     "heroDescription": "",
     "getStarted": "Get Started",
     "contactUs": "Contact Us",
-       "bookingJourney": "The easiest booking journey is about to begin…"
+    "bookingJourney": "The easiest booking journey is about to begin…"
   },
   "cta": {
     "title": {
@@ -128,6 +128,7 @@
     "phone": "Phone Number",
     "phonePlaceholder": "Phone number",
     "password": "Password",
+    "passwordConfirm": "Password Confirm",
     "passwordPlaceholder": "Enter your password",
     "signUp": "Sign Up",
     "signingUp": "Signing up...",
@@ -140,6 +141,7 @@
     "createNewAccount": "Join us! And Create a new account",
     "dontHaveAccount": "Don’t have an account",
     "register": "Sign Up",
+    "passwordConfirmPlaceholder": "Confirm your password",
     "validation": {
       "nameMin": "Name must be at least 2 characters",
       "licenseNumberRequired": "License number is required",
@@ -154,7 +156,9 @@
       "emailMin": "Email must be at least 5 characters",
       "passwordMin": "Password must be at least 6 characters long",
       "passwordStrong": "Password must include both letters and numbers",
-      "termsRequired": "You must accept the terms and privacy policy"
+      "termsRequired": "You must accept the terms and privacy policy",
+      "passwordConfirmRequired": "Please confirm your password",
+      "passwordsMustMatch": "Passwords must match"
     }
   },
   "checkout": {

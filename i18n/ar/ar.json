@@ -148,6 +148,8 @@
     "createNewAccount": "انضم إلينا وأنشئ حساباً جديداً",
     "dontHaveAccount": "ليس لديك حساب؟",
     "register": "إنشاء حساب جديد",
+    "passwordConfirm": "تأكيد كلمة المرور",
+    "passwordConfirmPlaceholder": "تأكيد كلمة المرور",
     "validation": {
       "nameMin": "يجب أن يكون اسم العيادة حرفين على الأقل",
       "licenseNumberRequired": "رقم الترخيص مطلوب",
@@ -162,7 +164,9 @@
       "emailMin": "يجب أن يحتوي البريد الإلكتروني على 5 أحرف على الأقل",
       "passwordMin": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
       "passwordStrong": "يجب أن تحتوي كلمة المرور على أحرف وأرقام",
-      "termsRequired": "يجب الموافقة على الشروط وسياسة الخصوصية للمتابعة"
+      "termsRequired": "يجب الموافقة على الشروط وسياسة الخصوصية للمتابعة",
+      "passwordConfirmRequired": "يرجى تأكيد كلمة المرور",
+      "passwordsMustMatch": "يجب أن تتطابق كلمات المرور"
     }
   },
   "checkout": {

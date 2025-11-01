@@ -4,9 +4,12 @@ import EventCategoriesApi from "./api";
 export const useGetEventCategories = (language?: string) => {
   return useQuery({
     queryKey: ["event-categories", language],
-    queryFn: () => EventCategoriesApi.getAll(language),
-     placeholderData: (prev) => prev,
+    queryFn: () =>
+      EventCategoriesApi.getAll({
+        params: { lang: language },
+      }),
+    placeholderData: (prev) => prev,
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 60, 
+    staleTime: 1000 * 60,
   });
 };

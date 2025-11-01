@@ -1,13 +1,11 @@
-
-import { fetchJsonData } from "@/lib/api/fetchers";
+import HttpHelpers from "@/services/helpers";
+import { AxiosRequestConfig } from "axios";
 
 const EventCategoriesApi = {
-  getAll: (acceptLanguage?: string) =>
-    fetchJsonData<any[]>({
-      endpoint: "categories",
-      method: "GET",
-      acceptLanguage,
-    }),
+  getAll: async (config?: AxiosRequestConfig) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.get("categories", config);
+    return response.data;
+  },
 };
 
 export default EventCategoriesApi;

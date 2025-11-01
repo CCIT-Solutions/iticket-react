@@ -1,30 +1,35 @@
-import { fetchJsonData } from "@/lib/api/fetchers";
-import { GoogleLoginPayload, LoginPayload, RegisterPayload } from "@/types/Auth";
+import HttpHelpers from "../helpers";
 
-const AuthApi = {
-  register: (body: RegisterPayload, acceptLanguage?: string) =>
-    fetchJsonData<{ token: string }>({
-      endpoint: "register",
-      method: "POST",
-      body,
-      acceptLanguage,
-    }),
+const AuthApiEndpoints = {
+  register: async (data: unknown) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.post("register", data);
+    return response.data;
+  },
 
-  login: (body: LoginPayload, acceptLanguage?: string) =>
-    fetchJsonData<{ token: string }>({
-      endpoint: "login",
-      method: "POST",
-      body,
-      acceptLanguage,
-    }),
+  login: async (data: unknown) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.post("login", data);
+    return response.data;
+  },
 
-  loginWithGoogle: (body: GoogleLoginPayload, acceptLanguage?: string) =>
-    fetchJsonData<{ token: string }>({
-      endpoint: "google",
-      method: "POST",
-      body,
-      acceptLanguage,
-    }),
+  logout: async () => {
+    const response = await HttpHelpers.authenticatedAxios.post("logout");
+    return response.data;
+  },
+
+  forgetPassword: async (data: unknown) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.post("forget-password", data);
+    return response.data;
+  },
+
+  confirmOtp: async (data: unknown) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.post("verify-otp", data);
+    return response.data;
+  },
+
+  resetPassword: async (data: unknown) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.post("reset-password", data);
+    return response.data;
+  },
 };
 
-export default AuthApi;
+export default AuthApiEndpoints;

@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,7 +36,7 @@ function RegisterForm({
   onSwitchToLogin?: () => void;
 }) {
   const { t, isRTL, lang } = useLang();
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const schema = useMemo(() => createTranslatedSchema(t), [t]);
 
   const form = useForm<RegisterFormType>({
@@ -46,27 +46,26 @@ function RegisterForm({
       email: "",
       phone_number: "",
       password: "",
+      password_confirmation: "",
     },
   });
 
   const onSubmit = async (data: RegisterFormType) => {
-    console.log("data", data);
-
-    await apiRequest(AuthApi.register(data, lang), {
-      t,
-      setError: form.setError,
-      setLoading: (loading) => (form.formState.isSubmitting = loading),
-      onSuccess: (res) => {
-        toast.success(res.message);
-        form.reset();
-        onSuccess?.();
-      },
-      onError: (err) => {
-        console.log("err", err);
-        
-        toast.error(t("auth.registerFailed"));
-      },
-    });
+    setIsSubmitting(true);
+    try {
+      const res = await apiRequest(AuthApi.register(data), {
+        t,
+        setError: form.setError,
+      });
+      toast.success(res.message);
+      form.reset();
+      onSuccess?.();
+    } catch (err) {
+      console.error(err);
+      toast.error(t("auth.registerFailed"));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,9 +111,16 @@ function RegisterForm({
             {/* Password */}
             <CustomFormPassword
               name="password"
-              label="Password"
+              label={t("auth.password")}
               icon={<Lock />}
               placeholder={t("auth.passwordPlaceholder")}
+            />
+
+            <CustomFormPassword
+              name="password_confirmation"
+            label={t("auth.passwordConfirm")}
+              icon={<Lock />}
+              placeholder={t("auth.passwordConfirmPlaceholder")}
             />
 
             {/* Submit */}

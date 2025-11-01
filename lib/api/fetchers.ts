@@ -3,8 +3,8 @@ interface ApiResponse<T> {
   message?: string;
   data: T;
   errors: {
-    [key:string]: string[]
-  }
+    [key: string]: string[];
+  };
 }
 
 interface FetchOptions extends Omit<RequestInit, "method"> {
@@ -30,12 +30,19 @@ interface FetchFormDataProps {
   acceptLanguage?: string;
 }
 
+ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+
+ 
+
 export async function fetchData<T>({
   endpoint,
   method = "GET",
   options = {},
 }: FetchDataProps): Promise<T> {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+ 
+
+
   if (!apiUrl) throw new Error("API URL is not configured");
 
   const { acceptLanguage, ...restOptions } = options;
@@ -68,10 +75,12 @@ export async function fetchJsonData<T = unknown>({
   body,
   acceptLanguage,
 }: FetchJsonDataProps): Promise<ApiResponse<T>> {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+   console.log("apiUrl", apiUrl);
   if (!apiUrl) throw new Error("API URL is not configured");
 
-  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
   if (acceptLanguage) headers["Accept-Language"] = acceptLanguage;
 
   const response = await fetch(`${apiUrl}/${endpoint}`, {
@@ -79,6 +88,8 @@ export async function fetchJsonData<T = unknown>({
     headers,
     body: body && method !== "GET" ? JSON.stringify(body) : undefined,
   });
+
+  console.log("response", response);
 
   const json = await response.json();
   return json as ApiResponse<T>;
@@ -104,4 +115,3 @@ export async function fetchFormData<T = unknown>({
   const json = await response.json();
   return json as ApiResponse<T>;
 }
-

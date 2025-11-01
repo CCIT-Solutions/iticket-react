@@ -1,13 +1,11 @@
+import HttpHelpers from "@/services/helpers";
+import { AxiosRequestConfig } from "axios";
 
-import { fetchJsonData } from "@/lib/api/fetchers";
-
-const LandingCategoriesApi = {
-  getAll: (acceptLanguage?: string) =>
-    fetchJsonData<any[]>({
-      endpoint: "landing/categories",
-      method: "GET",
-      acceptLanguage,
-    }),
+const CategoriesApi = {
+  getAll: async (config?: AxiosRequestConfig) => {
+    const response = await HttpHelpers.unAuthenticatedAxios.get("landing-categories", config);
+    return response.data;
+  },
 };
 
-export default LandingCategoriesApi;
+export default CategoriesApi;

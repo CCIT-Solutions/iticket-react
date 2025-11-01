@@ -5,7 +5,7 @@ import Providers from "@/providers";
 import "@/i18n/i18n";
 import { Toaster } from "@/components/ui/sonner";
 import { Metadata } from "next";
-
+import HttpHelpers from "@/services/helpers"
 const basisGrotesque = localFont({
   src: [
     {
