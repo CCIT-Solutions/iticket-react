@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { UserData } from "@/types/auth";
+import { UserData } from "@/types/authType";
 
 interface UserState {
   user: UserData | null;
@@ -50,7 +50,8 @@ export const useUserStore = create<UserState>()(
       },
 
       setLoading: (loading: boolean) => set({ isLoading: loading }),
-      setHydrated: (hydrated: boolean) => set({ hasHydrated: hydrated, isLoading: false }),
+      setHydrated: (hydrated: boolean) =>
+        set({ hasHydrated: hydrated, isLoading: false }),
     }),
     {
       name: "user-store",

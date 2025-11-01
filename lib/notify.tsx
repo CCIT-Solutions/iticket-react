@@ -1,5 +1,5 @@
 import { toast } from "sonner";
-import { ApiResponse } from "@/types/apiResponse";
+import { ApiResponse } from "@/types/apiResponseType";
 
 export type ToastType = "success" | "error" | "warning" | "info";
 
