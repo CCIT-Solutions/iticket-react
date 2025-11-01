@@ -1,7 +1,6 @@
 // lib/api/api.ts
 import { ApiResponse } from "@/types/apiResponse";
 import { FieldValues, Path, UseFormSetError } from "react-hook-form";
-import { toast } from "sonner";
 import { notify } from "../notify";
 
 // ------------------ Types ------------------
@@ -18,7 +17,7 @@ export interface ApiErrorResponse {
       exception?: string;
       file?: string;
       line?: number;
-      trace?: any[];
+      trace?: unknown[];
     };
   };
   message?: string;
@@ -82,7 +81,7 @@ export const setServerErrors = <TFieldValues extends FieldValues>(
   }
 
   if (message && showToast) {
-    toast.error(message);
+    notify(message, { type: "error" });
     return false;
   }
 
@@ -131,7 +130,7 @@ export const apiRequest = async <
         res?.message || t?.("common.error") || "Something went wrong";
 
       if (showErrorToast) {
-        toast.error(errorMessage);
+        notify(errorMessage, { type: "error" });
       }
 
       if (onError) {
@@ -187,7 +186,7 @@ export const apiRequest = async <
 
     // ✅ Only show toast for server errors
     if (showErrorToast) {
-      toast.error(errorMessage);
+      notify(errorMessage, { type: "error" });
     }
 
     if (onError) {

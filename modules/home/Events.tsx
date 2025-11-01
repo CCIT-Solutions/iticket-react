@@ -14,6 +14,7 @@ import Image from "next/image";
 import { EventCategory } from "@/types/eventCategory";
 import Loading from "@/components/shared/Loading";
 import { useLang } from "@/hooks/useLang";
+import { Event } from "@/types/event";
 
 const EventCard = dynamic(() => import("@/components/events/EventCard"));
 
@@ -33,7 +34,7 @@ function Events() {
 const filteredEvents = useMemo(() => {
   const eventList = events || [];
   if (activeCategory === "All") return eventList;
-  return eventList.filter((event) =>
+  return eventList.filter((event :Event) =>
     event.categories?.some(
       (cat: EventCategory) => cat.name === activeCategory
     )
@@ -82,7 +83,7 @@ const filteredEvents = useMemo(() => {
               <Translate text="events.categories.all" />
             </span>
           </Button>
-          {categories?.map((category, index) => (
+          {categories?.map((category: EventCategory) => (
             <Button
               variant={"noStyle"}
               key={category.id}
@@ -111,7 +112,7 @@ const filteredEvents = useMemo(() => {
 
         {/* Event Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
-          {filteredEvents.slice(0, visibleCount).map((event) => (
+          {filteredEvents.slice(0, visibleCount).map((event: Event) => (
             <EventCard event={event} key={event.id} />
           ))}
         </div>

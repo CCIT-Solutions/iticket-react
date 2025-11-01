@@ -8,6 +8,7 @@ import { useLang } from "@/hooks/useLang";
 import { fadeD1 } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import { useGetLandingCategories } from "@/services/landingCategories/query";
+import { LandingCategory } from "@/types/landingCategory";
 
 function QuickFilters() {
   const { lang } = useLang();
@@ -29,7 +30,7 @@ function QuickFilters() {
     >
       <Container>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
-          {landingCategories?.map((cat) => {
+          {landingCategories?.map((cat: LandingCategory) => {
             const words = cat.title?.trim().split(/\s+/) ?? [];
             const isTwoWords = words.length === 2;
             const displayTitle = isTwoWords ? words.join("\n") : cat.title;

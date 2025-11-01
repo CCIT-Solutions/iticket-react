@@ -34,12 +34,12 @@ export function notify(
 
   if (!message) return;
 
-  const icons: Record<ToastType, string> = {
-    success: "✅",
-    error: "❌",
-    warning: "⚠️",
-    info: "ℹ️",
-  };
+  // const icons: Record<ToastType, string> = {
+  //   success: "✅",
+  //   error: "❌",
+  //   warning: "⚠️",
+  //   info: "ℹ️",
+  // };
 
   const toastOptions = { position, duration };
 

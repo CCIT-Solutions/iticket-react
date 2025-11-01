@@ -37,14 +37,12 @@ function RegisterForm({
   onSuccess?: () => void;
   onSwitchToLogin?: () => void;
 }) {
-  const { t, isRTL, lang } = useLang();
+  const { t, isRTL } = useLang();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const schema = useMemo(() => createTranslatedSchema(t), [t]);
   const router = useRouter();
 
   const { setUser } = useUser();
-
-  
 
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(schema),

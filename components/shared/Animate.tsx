@@ -1,6 +1,6 @@
 "use client";
 
-import React, { type ReactNode, type ElementType, type CSSProperties } from "react";
+import React, { type ReactNode, type ElementType } from "react";
 import { motion, type MotionProps, type Variants, type MotionStyle, type TargetAndTransition, type VariantLabels } from "framer-motion";
 
 type MotionElementTag =
@@ -46,7 +46,6 @@ export default function Animate({
   transition,
   ...props
 }: AnimateProps) {
-  // Dynamically get motion element from framer-motion
   const MotionComponent = motion[element] as ElementType;
 
   return (
